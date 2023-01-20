@@ -1,0 +1,41 @@
+<!--
+    4. Design a user registration form using basic
+        text formatting tags.
+-->
+
+<html> 
+    <head>
+        <title>User Registration Form</title>
+    </head>
+
+    <body>
+        <form>
+            <label>Username:</label>
+            <input type="text" name="username" required><br>
+
+            <label>Password:</label>
+            <input type="password" name="password" required><br>
+
+            <label>Gender:</label>
+            <input type="radio" name="gender" value="male" checked> Male
+            <input type="radio" name="gender" value="female"> Female<br>
+
+            <label>Interests:</label>
+            <input type="checkbox" name="interests" value="games"> Games
+            <input type="checkbox" name="interests" value="music"> Music
+            <input type="checkbox" name="interests" value="travel"> Travel<br>
+
+            <label>Country:</label>
+            <select name="country">
+              <option value="India">India</option>
+              <option value="Pakistan">Pakistan</option>
+              <option value="Sri Lanka">Sri Lanka</option>
+            </select><br>
+
+            <label>Bio:</label><br/>
+            <textarea name="bio"></textarea><br>
+            <input type="submit" value="Submit">
+        </form>
+        
+    </body>
+</html>
