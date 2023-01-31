@@ -1,0 +1,24 @@
+body{
+    font-family: Monotype-corsiva;
+    font-size: large;
+    color: red;
+    background-color: aqua;
+    margin: 60px;
+}
+
+p{
+    font-family: 'Times New Roman', Times, serif;
+}
+
+h1{
+    color: yellow;
+    background-color: black;
+    font-family: 'Arial';
+    border-bottom-style: solid;
+}
+
+img{
+    border-style: double;
+    border-radius: 4px;
+    border-color: red;
+}

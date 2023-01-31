@@ -1,0 +1,37 @@
+.box {
+    background-color: white;
+    width: 200px;
+    height: 110px;
+    padding-top: 20px;
+    padding-bottom: 20px; 
+}
+
+body {
+    background-color: limegreen;
+    max-width: 900px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    height: 100vh;
+    text-align: center;
+}
+
+.LOGIN{
+    background-color: limegreen;
+    color: white;
+    border: none;
+    width: 170px;
+    height: 20px;
+}
+
+.BORDER{
+    border: 1px solid #ccc;
+    /* border-color: gray; */
+    border-radius: 4px;
+}
+
+.TEXT{
+    color: #ccc;
+    font-size: xx-small;
+}
