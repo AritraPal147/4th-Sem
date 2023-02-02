@@ -2,8 +2,8 @@
     background-color: white;
     width: 200px;
     height: 110px;
-    padding-top: 20px;
-    padding-bottom: 20px; 
+    padding-top: 30px;
+    padding-bottom: 30px; 
 }
 
 body {
@@ -27,11 +27,14 @@ body {
 
 .BORDER{
     border: 1px solid #ccc;
-    /* border-color: gray; */
-    border-radius: 4px;
 }
 
 .TEXT{
     color: #ccc;
     font-size: xx-small;
+}
+
+input{
+    background-color: lightgray;
+    height: 20px;
 }

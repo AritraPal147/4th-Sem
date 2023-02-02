@@ -1,0 +1,486 @@
+SQL> create table faculty(
+  2  FacultyId VARCHAR2(10) NOT NULL,
+  3  Name VARCHAR2(15) NOT NULL,
+  4  RoomId INTEGER,
+  5  Phone INTEGER,
+  6  DeptId INTEGER NOT NULL);
+
+Table created.
+
+SQL> INSERT INTO Faculty values(AB100, ABCDEFGH, 2100, 54644, 202);
+INSERT INTO Faculty values(AB100, ABCDEFGH, 2100, 54644, 202)
+                                  *
+ERROR at line 1:
+ORA-00984: column not allowed here 
+
+
+SQL> INSERT INTO Faculty values('AB100', 'ABCDEFGH', 2100, 54644, 202);
+
+1 row created.
+
+SQL> select * from faculty;
+
+FACULTYID  NAME                ROOMID      PHONE     DEPTID                                                                                                                                                                                                                                                                                                                                                     
+---------- --------------- ---------- ---------- ----------                                                                                                                                                                                                                                                                                                                                                     
+AB100      ABCDEFGH              2100      54644        202                                                                                                                                                                                                                                                                                                                                                     
+
+SQL> INSERT INTO Faculty values('AB200', 'XYZ', 216, 79462, 209);
+
+1 row created.
+
+SQL> INSERT INTO Faculty values('XY999', 'ABC', 904, 35464, 300);
+
+1 row created.
+
+SQL> INSERT INTO Faculty values('AXJ130', 'Sharma', 764, 30215, 964);
+
+1 row created.
+
+SQL> INSERT INTO Faculty values('BJY976', 'Kumar',604, 59720, 379);
+
+1 row created.
+
+SQL> select * from faculty;
+
+FACULTYID  NAME                ROOMID      PHONE     DEPTID                                                                                                                                                                                                                                                                                                                                                     
+---------- --------------- ---------- ---------- ----------                                                                                                                                                                                                                                                                                                                                                     
+AB100      ABCDEFGH              2100      54644        202                                                                                                                                                                                                                                                                                                                                                     
+AB200      XYZ                    216      79462        209                                                                                                                                                                                                                                                                                                                                                     
+XY999      ABC                    904      35464        300                                                                                                                                                                                                                                                                                                                                                     
+AXJ130     Sharma                 764      30215        964                                                                                                                                                                                                                                                                                                                                                     
+BJY976     Kumar                  604      59720        379                                                                                                                                                                                                                                                                                                                                                     
+
+SQL> CREATE TABLE Course(
+  2  CourseId NOT NULL UNIQUE,
+  3  Title NOT NULL,
+  4  Credits NOT NULL,
+  5  ;
+
+*
+ERROR at line 5:
+ORA-00904: : invalid identifier 
+
+
+SQL> CREATE TABLE Course(
+  2  CourseId INTEGER NOT NULL UNIQUE,
+  3  Title VARCHAR2(20) NOT NULL,
+  4  Credits INTEGER NOT NULL,
+  5  PreReq VARCHAR2(20));
+
+Table created.
+
+SQL> INSERT INTO Course VALUES(
+  2  100, 'DBMS', 4, 'OOPS');
+
+1 row created.
+
+SQL> INSERT INTO Course VALUES(120, 'OOPS', 4, 'C++');
+
+1 row created.
+
+SQL> INSERT INTO Course VALUES(150, 'DSA', 4, 'C Programming');
+
+1 row created.
+
+SQL> INSERT INTO Course VALUES(101, 'DBMS Lab', 1, 'DBMS');
+
+1 row created.
+
+SQL> INSERT INTO Course VALUES(500, 'Web Technology', 3, 'OOPS');
+
+1 row created.
+
+SQL> select * from Course;
+
+  COURSEID TITLE                   CREDITS PREREQ                                                                                                                                                                                                                                                                                                                                                               
+---------- -------------------- ---------- --------------------                                                                                                                                                                                                                                                                                                                                                 
+       100 DBMS                          4 OOPS                                                                                                                                                                                                                                                                                                                                                                 
+       120 OOPS                          4 C++                                                                                                                                                                                                                                                                                                                                                                  
+       150 DSA                           4 C Programming                                                                                                                                                                                                                                                                                                                                                        
+       101 DBMS Lab                      1 DBMS                                                                                                                                                                                                                                                                                                                                                                 
+       500 Web Technology                3 OOPS                                                                                                                                                                                                                                                                                                                                                                 
+
+SQL> CREATE TABLE CRSSECTION(
+  2  CsId INTEGER NOT NULL UNIQUE,
+  3  CourseId INTEGER NOT NULL,
+  4  Section INTEGER NOT NULL,
+  5  TermId INTEGER,
+  6  FacultyId INTEGER,
+  7  Day VARCHAR2(10),
+  8  StartTime VARCHAR2(10),
+  9  EndTime VARCHAR2(10),
+ 10  RoomId INTEGER,
+ 11  MaxCount INTEGER);
+
+Table created.
+
+SQL> insert into CRSSECTION values(
+  2  5, 123, 19, 009, 'Monday', '09:00', '13:00', 203, 81);
+insert into CRSSECTION values(
+            *
+ERROR at line 1:
+ORA-00947: not enough values 
+
+
+SQL> insert into CRSSECTION values(
+  2  5, 123, 19, 009, 597, 'Monday', '09:00', '13:00', 203, 81);
+
+1 row created.
+
+SQL> SELECT * FROM Crssection;
+
+      CSID   COURSEID    SECTION     TERMID  FACULTYID DAY        STARTTIME  ENDTIME        ROOMID   MAXCOUNT                                                                                                                                                                                                                                                                                                   
+---------- ---------- ---------- ---------- ---------- ---------- ---------- ---------- ---------- ----------                                                                                                                                                                                                                                                                                                   
+         5        123         19          9        597 Monday     09:00      13:00             203         81                                                                                                                                                                                                                                                                                                   
+
+SQL> insert into CRSSECTION values(
+  2  6, 456, 19, 10, 'Tuesday', '09:00', '13:00', 203, 90);
+insert into CRSSECTION values(
+            *
+ERROR at line 1:
+ORA-00947: not enough values 
+
+
+SQL> insert into CRSSECTION values(
+  2  6, 456, 20, 18, 600, 'Tuesday', '09:00', '13:00', 404, 80);
+
+1 row created.
+
+SQL> insert into CRSSECTION values(
+  2  7, 789, 21, 20, 500, 'Wedsday', '15:00', '18:00', 406, 90);
+
+1 row created.
+
+SQL> insert into CRSSECTION values(
+  2  8, 103, 16, 25, 700, 'Thursday', '15:00', '18:00', 102, 90);
+
+1 row created.
+
+SQL> insert into CRSSECTION values(
+  2  9, 104, 26, 23, 900, 'Friday', '15:00', '18:00', 105, 90);
+
+1 row created.
+
+SQL> insert into CRSSECTION values(
+  2  10, 601, 31, 31, 499, 'Saturday', '15:00', '18:00', 999, 100);
+
+1 row created.
+
+SQL> select * from crssection;
+
+      CSID   COURSEID    SECTION     TERMID  FACULTYID DAY        STARTTIME  ENDTIME        ROOMID   MAXCOUNT                                                                                                                                                                                                                                                                                                   
+---------- ---------- ---------- ---------- ---------- ---------- ---------- ---------- ---------- ----------                                                                                                                                                                                                                                                                                                   
+         5        123         19          9        597 Monday     09:00      13:00             203         81                                                                                                                                                                                                                                                                                                   
+         6        456         20         18        600 Tuesday    09:00      13:00             404         80                                                                                                                                                                                                                                                                                                   
+         7        789         21         20        500 Wedsday    15:00      18:00             406         90                                                                                                                                                                                                                                                                                                   
+         8        103         16         25        700 Thursday   15:00      18:00             102         90                                                                                                                                                                                                                                                                                                   
+         9        104         26         23        900 Friday     15:00      18:00             105         90                                                                                                                                                                                                                                                                                                   
+        10        601         31         31        499 Saturday   15:00      18:00             999        100                                                                                                                                                                                                                                                                                                   
+
+6 rows selected.
+
+SQL> CREATE TABLE Term(
+  2  TermId INTEGER NOT NULL UNIQUE,
+  3  TermDesc VARCHAR2(15),
+  4  StartDate DATE,
+  5  EndDate DATE);
+
+Table created.
+
+SQL> INSERT INTO Term VALUES(9, 'Spring 2021', TO_DATE('2021-01-03'), TO_DATE('2021-05-15'));
+INSERT INTO Term VALUES(9, 'Spring 2021', TO_DATE('2021-01-03'), TO_DATE('2021-05-15'))
+                                                  *
+ERROR at line 1:
+ORA-01861: literal does not match format string 
+
+
+SQL> INSERT INTO Term VALUES(9, 'Spring 2021', TO_DATE('03-01-2021', 'DD-MON-YYYY'), TO_DATE('15-05-2021', 'DD-MON-YYYY'));
+INSERT INTO Term VALUES(9, 'Spring 2021', TO_DATE('03-01-2021', 'DD-MON-YYYY'), TO_DATE('15-05-2021', 'DD-MON-YYYY'))
+                                                  *
+ERROR at line 1:
+ORA-01843: not a valid month 
+
+
+SQL> INSERT INTO Term VALUES(9, 'Spring 2021', TO_DATE('03-JAN-2021', 'DD-MON-YYYY'), TO_DATE('15-MAY-2021', 'DD-MON-YYYY'));
+
+1 row created.
+
+SQL> INSERT INTO Term VALUES(18, 'Autumn 2021', TO_DATE('01-Jul-2021', 'DD-MON-YYYY'), TO_DATE('20-Dec-2021', 'DD-MON-YYYY'));
+
+1 row created.
+
+SQL> INSERT INTO Term VALUES(20, 'Spring 2022', TO_DATE('03-JAN-2022', 'DD-MON-YYYY'), TO_DATE('15-MAY-2022', 'DD-MON-YYYY'));
+
+1 row created.
+
+SQL> INSERT INTO Term VALUES(25, 'Autumn 2022', TO_DATE('01-Jul-2022', 'DD-MON-YYYY'), TO_DATE('20-Dec-2022', 'DD-MON-YYYY'));
+
+1 row created.
+
+SQL> INSERT INTO Term VALUES(31, 'Spring 2023', TO_DATE('03-JAN-2023', 'DD-MON-YYYY'), TO_DATE('15-MAY-2023', 'DD-MON-YYYY'));
+
+1 row created.
+
+SQL> SELECT * FROM Term;
+
+    TERMID TERMDESC        STARTDATE ENDDATE                                                                                                                                                                                                                                                                                                                                                                    
+---------- --------------- --------- ---------                                                                                                                                                                                                                                                                                                                                                                  
+         9 Spring 2021     03-JAN-21 15-MAY-21                                                                                                                                                                                                                                                                                                                                                                  
+        18 Autumn 2021     01-JUL-21 20-DEC-21                                                                                                                                                                                                                                                                                                                                                                  
+        20 Spring 2022     03-JAN-22 15-MAY-22                                                                                                                                                                                                                                                                                                                                                                  
+        25 Autumn 2022     01-JUL-22 20-DEC-22                                                                                                                                                                                                                                                                                                                                                                  
+        31 Spring 2023     03-JAN-23 15-MAY-23                                                                                                                                                                                                                                                                                                                                                                  
+
+SQL> CREATE TABLE Room(
+  2  RoomType VARCHAR2(15) NOT NULL UNIQUE,
+  3  RoomDesc VARCHAR2(15));
+
+Table created.
+
+SQL> INSERT INTO Room VALUES(
+  2  'Lecture Hall', 'Hall');
+
+1 row created.
+
+SQL> INSERT INTO Room VALUES('Wireless Lab', 'Lab');
+
+1 row created.
+
+SQL> INSERT INTO Room VALUES('Wired Lab', 'Lab');
+
+1 row created.
+
+SQL> INSERT INTO Room VALUES('Classroom', 'For Class');
+
+1 row created.
+
+SQL> INSERT INTO Room VALUES('Residence Rooms', 'For Residence');
+
+1 row created.
+
+SQL> SELECT * FROM Room;
+
+ROOMTYPE        ROOMDESC                                                                                                                                                                                                                                                                                                                                                                                        
+--------------- ---------------                                                                                                                                                                                                                                                                                                                                                                                 
+Lecture Hall    Hall                                                                                                                                                                                                                                                                                                                                                                                            
+Wireless Lab    Lab                                                                                                                                                                                                                                                                                                                                                                                             
+Wired Lab       Lab                                                                                                                                                                                                                                                                                                                                                                                             
+Classroom       For Class                                                                                                                                                                                                                                                                                                                                                                                       
+Residence Rooms For Residence                                                                                                                                                                                                                                                                                                                                                                                   
+
+SQL> ALTER TABLE ROOM SET ROOMTYPE VARCHAR(20);
+ALTER TABLE ROOM SET ROOMTYPE VARCHAR(20)
+                     *
+ERROR at line 1:
+ORA-02000: missing UNUSED keyword 
+
+
+SQL> ALTER TABLE ROOM MODIFY ROOMTYPE VARCHAR(20);
+
+Table altered.
+
+SQL> ALTER TABLE ROOM MODIFY ROOMDESC VARCHAR(50);
+
+Table altered.
+
+SQL> SELECT * FROM Room;
+
+ROOMTYPE             ROOMDESC                                                                                                                                                                                                                                                                                                                                                                                   
+-------------------- --------------------------------------------------                                                                                                                                                                                                                                                                                                                                         
+Lecture Hall         Hall                                                                                                                                                                                                                                                                                                                                                                                       
+Wireless Lab         Lab                                                                                                                                                                                                                                                                                                                                                                                        
+Wired Lab            Lab                                                                                                                                                                                                                                                                                                                                                                                        
+Classroom            For Class                                                                                                                                                                                                                                                                                                                                                                                  
+Residence Rooms      For Residence                                                                                                                                                                                                                                                                                                                                                                              
+
+SQL> CREATE TABLE Registration(
+  2  StudentId INTEGER NOT NULL UNIQUE,
+  3  CsId INTEGER NOT NULL UNIQUE,
+  4  Midterm INTEGER,
+  5  Final INTEGER,
+  6  RegStatus VARCHAR2(15) NOT NULL);
+
+Table created.
+
+SQL> INSERT INTO Registration Values (1881, 120, 20, 50, 'True');
+
+1 row created.
+
+SQL> INSERT INTO Registration Values (1882, 122, 13, 46, 'True');
+
+1 row created.
+
+SQL> INSERT INTO Registration Values (1885, 129, 20, 20, 'False');
+
+1 row created.
+
+SQL> INSERT INTO Registration Values (1900, 130, 0, 20, 'False');
+
+1 row created.
+
+SQL> INSERT INTO Registration Values (2051, 264, 20, 49, 'True');
+
+1 row created.
+
+SQL> SELECT * FROM Registration;
+
+ STUDENTID       CSID    MIDTERM      FINAL REGSTATUS                                                                                                                                                                                                                                                                                                                                                           
+---------- ---------- ---------- ---------- ---------------                                                                                                                                                                                                                                                                                                                                                     
+      1881        120         20         50 True                                                                                                                                                                                                                                                                                                                                                                
+      1882        122         13         46 True                                                                                                                                                                                                                                                                                                                                                                
+      1885        129         20         20 False                                                                                                                                                                                                                                                                                                                                                               
+      1900        130          0         20 False                                                                                                                                                                                                                                                                                                                                                               
+      2051        264         20         49 True                                                                                                                                                                                                                                                                                                                                                                
+
+SQL> CREATE TABLE Department (
+  2  DeptId INTEGER NOT NULL UNIQUE,
+  3  DeptName VARCHAR2(15) NOT NULL,
+  4  FacultyId INTEGER NOT NULL);
+
+Table created.
+
+SQL> INSERT INTO Department VALUES(20, 2510, 'Electronics', 551);
+INSERT INTO Department VALUES(20, 2510, 'Electronics', 551)
+            *
+ERROR at line 1:
+ORA-00913: too many values 
+
+
+SQL> INSERT INTO Department VALUES(20, 'Electronics', 551);
+
+1 row created.
+
+SQL> INSERT INTO Department VALUES(30, 'Communication', 104);
+
+1 row created.
+
+SQL> INSERT INTO Department VALUES(35, 'Computer Science', 104);
+INSERT INTO Department VALUES(35, 'Computer Science', 104)
+                                  *
+ERROR at line 1:
+ORA-12899: value too large for column "SYS"."DEPARTMENT"."DEPTNAME" (actual: 16, maximum: 15) 
+
+
+SQL> ALTER TABLE DEPARTMENT MODIFY DEPTNAME VARCHAR2(20);
+
+Table altered.
+
+SQL> INSERT INTO Department VALUES(35, 'Computer Science', 104);
+
+1 row created.
+
+SQL> INSERT INTO Department VALUES(40, 'Language', 106);
+
+1 row created.
+
+SQL> INSERT INTO Department VALUES(90, 'Mathematics', 2290);
+
+1 row created.
+
+SQL> SELECT * FROM Department;
+
+    DEPTID DEPTNAME              FACULTYID                                                                                                                                                                                                                                                                                                                                                                      
+---------- -------------------- ----------                                                                                                                                                                                                                                                                                                                                                                      
+        20 Electronics                 551                                                                                                                                                                                                                                                                                                                                                                      
+        30 Communication               104                                                                                                                                                                                                                                                                                                                                                                      
+        35 Computer Science            104                                                                                                                                                                                                                                                                                                                                                                      
+        40 Language                    106                                                                                                                                                                                                                                                                                                                                                                      
+        90 Mathematics                2290                                                                                                                                                                                                                                                                                                                                                                      
+
+SQL> CREATE TABLE Major(
+  2  MajorId INTEGER NOT NULL UNIQUE,
+  3  MajorDesc VARCHAR2(30));
+
+Table created.
+
+SQL> INSERT INTO Major VALUES(
+  2  250, 'Comupter Science');
+
+1 row created.
+
+SQL> INSERT INTO Major VALUES(100, 'Artificial Intelligence');
+
+1 row created.
+
+SQL> INSERT INTO Major VALUES(164, 'Economics');
+
+1 row created.
+
+SQL> INSERT INTO Major VALUES(200, 'Geography');
+
+1 row created.
+
+SQL> INSERT INTO Major VALUES(467, 'Mathematics');
+
+1 row created.
+
+SQL> SELECT * FROM Major;p
+  2  SELECT * FROM Major;
+SELECT * FROM Major;p
+                   *
+ERROR at line 1:
+ORA-00911: invalid character 
+
+
+SQL> SELECT * FROM Major;
+
+   MAJORID MAJORDESC                                                                                                                                                                                                                                                                                                                                                                                            
+---------- ------------------------------                                                                                                                                                                                                                                                                                                                                                                       
+       250 Comupter Science                                                                                                                                                                                                                                                                                                                                                                                     
+       100 Artificial Intelligence                                                                                                                                                                                                                                                                                                                                                                              
+       164 Economics                                                                                                                                                                                                                                                                                                                                                                                            
+       200 Geography                                                                                                                                                                                                                                                                                                                                                                                            
+       467 Mathematics                                                                                                                                                                                                                                                                                                                                                                                          
+
+SQL> CREATE TABLE LOCATION(
+  2  RoomId INTEGER NOT NULL UNIQUE,
+  3  Building VARCHAR2(20),
+  4  RoomNo INTEGER NOT NULL.
+  5  
+SQL> CREATE TABLE LOCATION(
+  2  RoomId INTEGER NOT NULL UNIQUE,
+  3  Building VARCHAR2(20),
+  4  RoomNo INTEGER NOT NULL,
+  5  Capacity INTEGER,
+  6  RoomType VARCHAR2(20));
+
+Table created.
+
+SQL> INSERT INTO Location VALUES(125, 'B-Block', 005, 90, 'Lecture Hall');
+
+1 row created.
+
+SQL> INSERT INTO Location VALUES(190, 'B-Block', 009, 90, 'Lecture Hall');
+
+1 row created.
+
+SQL> INSERT INTO Location VALUES(200, 'A-Block', 059, 60, 'Wireless Lab');
+
+1 row created.
+
+SQL> INSERT INTO Location VALUES(205, 'A-Block', 060, 60, 'Wired Lab');
+
+1 row created.
+
+SQL> INSERT INTO Location VALUES(200, 'C-Block', 001, 150, 'Auditorium');
+INSERT INTO Location VALUES(200, 'C-Block', 001, 150, 'Auditorium')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SYS.SYS_C008335) violated 
+
+
+SQL> INSERT INTO Location VALUES(269, 'C-Block', 001, 150, 'Auditorium');
+
+1 row created.
+
+SQL> SELECT * FROM Location;
+
+    ROOMID BUILDING                 ROOMNO   CAPACITY ROOMTYPE                                                                                                                                                                                                                                                                                                                                                  
+---------- -------------------- ---------- ---------- --------------------                                                                                                                                                                                                                                                                                                                                      
+       125 B-Block                       5         90 Lecture Hall                                                                                                                                                                                                                                                                                                                                              
+       190 B-Block                       9         90 Lecture Hall                                                                                                                                                                                                                                                                                                                                              
+       200 A-Block                      59         60 Wireless Lab                                                                                                                                                                                                                                                                                                                                              
+       205 A-Block                      60         60 Wired Lab                                                                                                                                                                                                                                                                                                                                                 
+       269 C-Block                       1        150 Auditorium                                                                                                                                                                                                                                                                                                                                                
+
+SQL> spool end

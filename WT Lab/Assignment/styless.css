@@ -1,0 +1,26 @@
+body { background-color: #8EA7E9;}
+hr {
+  
+    border-style: none;
+    border-top-style: dotted ;
+    border-color: white;
+    border-width: 6px;
+    width: 55px;
+    
+    
+}
+.p1{
+    color: #E5E0FF;
+}
+p{
+    color: rgb(33, 31, 31);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+h1{
+    color: #E5E0FF;
+    font-family: Lucida Handwriting;
+}
+h3{
+    color: #FFF2F2;
+    font-family: Papyrus;
+}

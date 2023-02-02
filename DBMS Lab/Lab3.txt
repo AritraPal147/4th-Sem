@@ -1,0 +1,659 @@
+SQL> CREATE TABLE Employee(
+  2  EmployeeId INTEGER NOT NULL UNIQUE,
+  3  LName VARCHAR2(15) NOT NULL,
+  4  FName VARCAHR2(15) NOT NULL,
+  5  PositionId INTEGER,
+  6  Supervisor VARCHAR2(15),
+  7  HireDate DATE,
+  8  Salary INTEGER,
+  9  Commission INTEGER,
+ 10  DeptId INTEGER,
+ 11  QualId INTEGER);
+FName VARCAHR2(15) NOT NULL,
+              *
+ERROR at line 4:
+ORA-00907: missing right parenthesis 
+
+
+SQL> CREATE TABLE Employee(
+  2  EmployeeId INTEGER NOT NULL UNIQUE,
+  3  LName VARCHAR2(15) NOT NULL,
+  4  FName VARCHAR2(15) NOT NULL,
+  5  PositionId INTEGER,
+  6  Supervisor VARCHAR2(15),
+  7  HireDate DATE,
+  8  Salary INTEGER,
+  9  Commission INTEGER,
+ 10  DeptId INTEGER,
+ 11  QualId INTEGER);
+
+Table created.
+
+SQL> CREATE TABLE Postition(
+  2  PostionId INTEGER NOT NULL,
+  3  PositionDesc VARCHAR2(20));
+
+Table created.
+
+SQL> ALTER TABLE Postition RENAME TO Position
+  2  ;
+
+Table altered.
+
+SQL> CREATE TABLE Dept(
+  2  DeptId INTEGER NOT NULL UNIQUE,
+  3  DeptName VARCHAR2(20) NOT NULL,
+  4  Location VARCHAR2(15),
+  5  EmployeeId INTEGER);
+
+Table created.
+
+SQL> CREATE TABLE Qualification(
+  2  QualId INTEGER,
+  3  QualDesc VARCHAR2(20));
+
+Table created.
+
+SQL> CREATE TABLE EmpLevel(
+  2  LevelNo INTEGER NOT NULL UNIQUE,
+  3  LowSalary INTEGER NOT NULL,
+  4  HighSalary INTEGER NOT NULL);
+
+Table created.
+
+SQL> CREATE TABLE Dependent(
+  2  EmployeeId INTEGER NOT NULL,
+  3  DependentId INTEGER NOT NULL,
+  4  DepDOB DATE,
+  5  Relation VARCHAR2(20));
+
+Table created.
+
+SQL> Select * from employee;
+
+no rows selected
+
+SQL> desc employee;
+ Name                                                                                                                                                                                                                                      Null?    Type
+ ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------- ------------------------------------------------------------------------------------------------------------------------------------------------------------
+ EMPLOYEEID                                                                                                                                                                                                                                NOT NULL NUMBER(38)
+ LNAME                                                                                                                                                                                                                                     NOT NULL VARCHAR2(15)
+ FNAME                                                                                                                                                                                                                                     NOT NULL VARCHAR2(15)
+ POSITIONID                                                                                                                                                                                                                                         NUMBER(38)
+ SUPERVISOR                                                                                                                                                                                                                                         VARCHAR2(15)
+ HIREDATE                                                                                                                                                                                                                                           DATE
+ SALARY                                                                                                                                                                                                                                             NUMBER(38)
+ COMMISSION                                                                                                                                                                                                                                         NUMBER(38)
+ DEPTID                                                                                                                                                                                                                                             NUMBER(38)
+ QUALID                                                                                                                                                                                                                                             NUMBER(38)
+
+SQL> set linesize 800
+SQL> desc employee;
+ Name                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      Null?    Type
+ ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ EMPLOYEEID                                                                                                                                                                                                                                                                                                                                                                                                                                                                                NOT NULL NUMBER(38)
+ LNAME                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     NOT NULL VARCHAR2(15)
+ FNAME                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     NOT NULL VARCHAR2(15)
+ POSITIONID                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         NUMBER(38)
+ SUPERVISOR                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         VARCHAR2(15)
+ HIREDATE                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           DATE
+ SALARY                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             NUMBER(38)
+ COMMISSION                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         NUMBER(38)
+ DEPTID                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             NUMBER(38)
+ QUALID                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             NUMBER(38)
+
+SQL> set linesize 30
+SQL> desc employee;
+ Name              Null?    Type
+ ----------------- -------- ------------
+ EMPLOYEEID        NOT NULL NUMBER(38)
+ LNAME             NOT NULL VARCHAR2(15)
+ FNAME             NOT NULL VARCHAR2(15)
+ POSITIONID                 NUMBER(38)
+ SUPERVISOR                 VARCHAR2(15)
+ HIREDATE                   DATE
+ SALARY                     NUMBER(38)
+ COMMISSION                 NUMBER(38)
+ DEPTID                     NUMBER(38)
+ QUALID                     NUMBER(38)
+
+SQL> INSERT INTO Employee VALUES(
+  2  100, 'Pal', 'Aritra', 50, 'Rajdeep', TO_DATE('16-JAN-2020', 'DD-MON-YYYY'), 50000, NULL, 20, 34);
+
+1 row created.
+
+SQL> INSERT INTO Employee VALUES(
+  2  100, 'Mishra', 'Sarita', 72, 'Samaresh', TO_DATE('19-JAN-2009', 'DD-MON-YYYY'), 100000, 5000, 20, 39);
+INSERT INTO Employee VALUES(
+*
+ERROR at line 1:
+ORA-00001: unique constraint 
+(SYS.SYS_C008343) violated 
+
+
+SQL> INSERT INTO Employee VALUES(
+  2  115, 'Mishra', 'Sarita', 72, 'Samaresh', TO_DATE('19-JAN-2009', 'DD-MON-YYYY'), 100000, 5000, 20, 39);
+
+1 row created.
+
+SQL> INSERT INTO Employee VALUES(
+  2  203, 'Pandey', 'Komal', 50, 'Sarita', TO_DATE('29-DEC-2023', 'DD-MON-YYYY'), 10000, 500, 16, 39);
+
+1 row created.
+
+SQL> INSERT INTO Employee VALUES(
+  2  203, 'Gupta', 'Sankalpa', 72, 'Rajdeep', TO_DATE('15-JUL-2020', 'DD-MON-YYYY'), 30000, NULL, 23, NULL);
+INSERT INTO Employee VALUES(
+*
+ERROR at line 1:
+ORA-00001: unique constraint 
+(SYS.SYS_C008343) violated 
+
+
+SQL> INSERT INTO Employee VALUES(
+  2  209, 'Gupta', 'Sankalpa', 72, 'Rajdeep', TO_DATE('15-JUL-2020', 'DD-MON-YYYY'), 30000, NULL, 23, NULL);
+
+1 row created.
+
+SQL> SELECT * FROM Employee;
+
+EMPLOYEEID LNAME              
+---------- ---------------    
+FNAME           POSITIONID    
+--------------- ----------    
+SUPERVISOR      HIREDATE      
+--------------- ---------     
+    SALARY COMMISSION         
+---------- ----------         
+    DEPTID     QUALID         
+---------- ----------         
+       100 Pal                
+Aritra                  50    
+Rajdeep         16-JAN-20     
+
+EMPLOYEEID LNAME              
+---------- ---------------    
+FNAME           POSITIONID    
+--------------- ----------    
+SUPERVISOR      HIREDATE      
+--------------- ---------     
+    SALARY COMMISSION         
+---------- ----------         
+    DEPTID     QUALID         
+---------- ----------         
+     50000                    
+        20         34         
+                              
+
+EMPLOYEEID LNAME              
+---------- ---------------    
+FNAME           POSITIONID    
+--------------- ----------    
+SUPERVISOR      HIREDATE      
+--------------- ---------     
+    SALARY COMMISSION         
+---------- ----------         
+    DEPTID     QUALID         
+---------- ----------         
+       115 Mishra             
+Sarita                  72    
+Samaresh        19-JAN-09     
+
+EMPLOYEEID LNAME              
+---------- ---------------    
+FNAME           POSITIONID    
+--------------- ----------    
+SUPERVISOR      HIREDATE      
+--------------- ---------     
+    SALARY COMMISSION         
+---------- ----------         
+    DEPTID     QUALID         
+---------- ----------         
+    100000       5000         
+        20         39         
+                              
+
+EMPLOYEEID LNAME              
+---------- ---------------    
+FNAME           POSITIONID    
+--------------- ----------    
+SUPERVISOR      HIREDATE      
+--------------- ---------     
+    SALARY COMMISSION         
+---------- ----------         
+    DEPTID     QUALID         
+---------- ----------         
+       203 Pandey             
+Komal                   50    
+Sarita          29-DEC-23     
+
+EMPLOYEEID LNAME              
+---------- ---------------    
+FNAME           POSITIONID    
+--------------- ----------    
+SUPERVISOR      HIREDATE      
+--------------- ---------     
+    SALARY COMMISSION         
+---------- ----------         
+    DEPTID     QUALID         
+---------- ----------         
+     10000        500         
+        16         39         
+                              
+
+EMPLOYEEID LNAME              
+---------- ---------------    
+FNAME           POSITIONID    
+--------------- ----------    
+SUPERVISOR      HIREDATE      
+--------------- ---------     
+    SALARY COMMISSION         
+---------- ----------         
+    DEPTID     QUALID         
+---------- ----------         
+       209 Gupta              
+Sankalpa                72    
+Rajdeep         15-JUL-20     
+
+EMPLOYEEID LNAME              
+---------- ---------------    
+FNAME           POSITIONID    
+--------------- ----------    
+SUPERVISOR      HIREDATE      
+--------------- ---------     
+    SALARY COMMISSION         
+---------- ----------         
+    DEPTID     QUALID         
+---------- ----------         
+     30000                    
+        23                    
+                              
+
+SQL> set linesize 300;
+SQL> SELECT * FROM Employee;
+
+EMPLOYEEID LNAME           FNAME           POSITIONID SUPERVISOR      HIREDATE      SALARY COMMISSION     DEPTID     QUALID                                                                                                                                                                                 
+---------- --------------- --------------- ---------- --------------- --------- ---------- ---------- ---------- ----------                                                                                                                                                                                 
+       100 Pal             Aritra                  50 Rajdeep         16-JAN-20      50000                    20         34                                                                                                                                                                                 
+       115 Mishra          Sarita                  72 Samaresh        19-JAN-09     100000       5000         20         39                                                                                                                                                                                 
+       203 Pandey          Komal                   50 Sarita          29-DEC-23      10000        500         16         39                                                                                                                                                                                 
+       209 Gupta           Sankalpa                72 Rajdeep         15-JUL-20      30000                    23                                                                                                                                                                                            
+
+SQL> DESC POSITION;
+ Name                                                                                                                                                                          Null?    Type
+ ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------- --------------------------------------------------------------------------------------------------------------------
+ POSTIONID                                                                                                                                                                     NOT NULL NUMBER(38)
+ POSITIONDESC                                                                                                                                                                           VARCHAR2(20)
+
+SQL> INSERT INTO Postion VALUES(
+  2  50, 'DBMS Designer');
+INSERT INTO Postion VALUES(
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> INSERT INTO Position VALUES(50, 'DBMS DESIGNER');
+
+1 row created.
+
+SQL> INSERT INTO Position VALUES(72, 'Manager');
+
+1 row created.
+
+SQL> SELECT * FROM Position;
+
+ POSTIONID POSITIONDESC                                                                                                                                                                                                                                                                                     
+---------- --------------------                                                                                                                                                                                                                                                                             
+        50 DBMS DESIGNER                                                                                                                                                                                                                                                                                    
+        72 Manager                                                                                                                                                                                                                                                                                          
+
+SQL> INSERT INTO Dept VALUES(20, 'Database Management', 'Bhubaneswar', 100);
+
+1 row created.
+
+SQL> INSERT INTO Dept VALUES(20, 'Database Management', 'Bhubaneswar', 115);
+INSERT INTO Dept VALUES(20, 'Database Management', 'Bhubaneswar', 115)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SYS.SYS_C008347) violated 
+
+
+SQL> INSERT INTO Dept VALUES(16, 'Human Resource', 'Bhubaneswar', 203);
+
+1 row created.
+
+SQL> INSERT INTO Dept VALUES(23, 'Janitor', 'Hyderabad', 209);
+
+1 row created.
+
+SQL> select * from Dept;
+
+    DEPTID DEPTNAME             LOCATION        EMPLOYEEID                                                                                                                                                                                                                                                  
+---------- -------------------- --------------- ----------                                                                                                                                                                                                                                                  
+        20 Database Management  Bhubaneswar            100                                                                                                                                                                                                                                                  
+        16 Human Resource       Bhubaneswar            203                                                                                                                                                                                                                                                  
+        23 Janitor              Hyderabad              209                                                                                                                                                                                                                                                  
+
+SQL> INSERT INTO Qualification VALUES(34, 'B.Tech');
+
+1 row created.
+
+SQL> INSERT INTO Qualification VALUES(39, 'M.Tech, M.BA');
+
+1 row created.
+
+SQL> INSERT INTO EMPLevel VALUES(1, 10000, 30000);
+
+1 row created.
+
+SQL> INSERT INTO EMPLevel VALUES(2, 30000, 60000);
+
+1 row created.
+
+SQL> INSERT INTO EMPLevel VALUES(3, 60000, 100000);
+
+1 row created.
+
+SQL> INSERT INTO EMPLevel VALUES(4, 100000, 150000);
+
+1 row created.
+
+SQL> SELECT * FROM EmpLevel;
+
+   LEVELNO  LOWSALARY HIGHSALARY                                                                                                                                                                                                                                                                            
+---------- ---------- ----------                                                                                                                                                                                                                                                                            
+         1      10000      30000                                                                                                                                                                                                                                                                            
+         2      30000      60000                                                                                                                                                                                                                                                                            
+         3      60000     100000                                                                                                                                                                                                                                                                            
+         4     100000     150000                                                                                                                                                                                                                                                                            
+
+SQL> INSERT INTO DEPENDENT VALUES(
+  2  100, 1, TO_DATE('23-Jan-1990', 'DD-MON-YYYY'), 'Spouse');
+
+1 row created.
+
+SQL> INSERT INTO DEPENDENT VALUES(
+  2  115, 1, TO_DATE('19-Feb-1995', 'DD-MON-YYYY'), 'Spouse');
+
+1 row created.
+
+SQL> INSERT INTO DEPENDENT VALUES(
+  2  203, 2, TO_DATE('19-Feb-2009', 'DD-MON-YYYY'), 'Son');
+
+1 row created.
+
+SQL> INSERT INTO DEPENDENT VALUES(
+  2  209, 3, TO_DATE('26-JAN-20202', 'DD-MON-YYYY'), 'Daughter');
+209, 3, TO_DATE('26-JAN-20202', 'DD-MON-YYYY'), 'Daughter')
+                *
+ERROR at line 2:
+ORA-01830: date format picture ends before converting entire input string 
+
+
+SQL> INSERT INTO DEPENDENT VALUES(
+  2  209, 3, TO_DATE('26-JAN-2022', 'DD-MON-YYYY'), 'Daughter');
+
+1 row created.
+
+SQL> SELECT * FROM DEPENDENT;
+
+EMPLOYEEID DEPENDENTID DEPDOB    RELATION                                                                                                                                                                                                                                                                   
+---------- ----------- --------- --------------------                                                                                                                                                                                                                                                       
+       100           1 23-JAN-90 Spouse                                                                                                                                                                                                                                                                     
+       115           1 19-FEB-95 Spouse                                                                                                                                                                                                                                                                     
+       203           2 19-FEB-09 Son                                                                                                                                                                                                                                                                        
+       209           3 26-JAN-22 Daughter                                                                                                                                                                                                                                                                   
+
+SQL> SELECT * FROM EMPLEVEL;
+
+   LEVELNO  LOWSALARY HIGHSALARY                                                                                                                                                                                                                                                                            
+---------- ---------- ----------                                                                                                                                                                                                                                                                            
+         1      10000      30000                                                                                                                                                                                                                                                                            
+         2      30000      60000                                                                                                                                                                                                                                                                            
+         3      60000     100000                                                                                                                                                                                                                                                                            
+         4     100000     150000                                                                                                                                                                                                                                                                            
+
+SQL> SELECT * FROM QUALIFICATION;
+
+    QUALID QUALDESC                                                                                                                                                                                                                                                                                         
+---------- --------------------                                                                                                                                                                                                                                                                             
+        34 B.Tech                                                                                                                                                                                                                                                                                           
+        39 M.Tech, M.BA                                                                                                                                                                                                                                                                                     
+
+SQL> SELECT * FROM DEPT;
+
+    DEPTID DEPTNAME             LOCATION        EMPLOYEEID                                                                                                                                                                                                                                                  
+---------- -------------------- --------------- ----------                                                                                                                                                                                                                                                  
+        20 Database Management  Bhubaneswar            100                                                                                                                                                                                                                                                  
+        16 Human Resource       Bhubaneswar            203                                                                                                                                                                                                                                                  
+        23 Janitor              Hyderabad              209                                                                                                                                                                                                                                                  
+
+SQL> SELECT * FROM POSITION;
+
+ POSTIONID POSITIONDESC                                                                                                                                                                                                                                                                                     
+---------- --------------------                                                                                                                                                                                                                                                                             
+        50 DBMS DESIGNER                                                                                                                                                                                                                                                                                    
+        72 Manager                                                                                                                                                                                                                                                                                          
+
+SQL> SELECT * FROM EMPLOYEE;
+
+EMPLOYEEID LNAME           FNAME           POSITIONID SUPERVISOR      HIREDATE      SALARY COMMISSION     DEPTID     QUALID                                                                                                                                                                                 
+---------- --------------- --------------- ---------- --------------- --------- ---------- ---------- ---------- ----------                                                                                                                                                                                 
+       100 Pal             Aritra                  50 Rajdeep         16-JAN-20      50000                    20         34                                                                                                                                                                                 
+       115 Mishra          Sarita                  72 Samaresh        19-JAN-09     100000       5000         20         39                                                                                                                                                                                 
+       203 Pandey          Komal                   50 Sarita          29-DEC-23      10000        500         16         39                                                                                                                                                                                 
+       209 Gupta           Sankalpa                72 Rajdeep         15-JUL-20      30000                    23                                                                                                                                                                                            
+
+SQL> SELECT FName||','||LName AS "Name", Salary FROM Employee;
+
+Name                                SALARY                                                                                                                                                                                                                                                                  
+------------------------------- ----------                                                                                                                                                                                                                                                                  
+Aritra,Pal                           50000                                                                                                                                                                                                                                                                  
+Sarita,Mishra                       100000                                                                                                                                                                                                                                                                  
+Komal,Pandey                         10000                                                                                                                                                                                                                                                                  
+Sankalpa,Gupta                       30000                                                                                                                                                                                                                                                                  
+
+SQL> ALTER TABLE Employee RENAME TO Employee-1881;
+ALTER TABLE Employee RENAME TO Employee-1881
+                                       *
+ERROR at line 1:
+ORA-14047: ALTER TABLE|INDEX RENAME may not be combined with other operations 
+
+
+SQL> ALTER TABLE Employee RENAME TO Employee_1881;
+
+Table altered.
+
+SQL> ALTER TABLE Position RENAME TO Position_1881;
+
+Table altered.
+
+SQL> ALTER TABLE Dept RENAME TO Dept_1881;
+
+Table altered.
+
+SQL> ALTER TABLE Qualification RENAME TO Qualification_1881;
+
+Table altered.
+
+SQL> ALTER TABLE EmpLevel RENAME TO EmpLevel_1881;
+
+Table altered.
+
+SQL> ALTER TABLE Dependent RENAME TO Dependent_1881;
+
+Table altered.
+
+SQL> SELECT FName||','||LName AS "Name", Salary FROM Employee_1881;
+
+Name                                SALARY                                                                                                                                                                                                                                                                  
+------------------------------- ----------                                                                                                                                                                                                                                                                  
+Aritra,Pal                           50000                                                                                                                                                                                                                                                                  
+Sarita,Mishra                       100000                                                                                                                                                                                                                                                                  
+Komal,Pandey                         10000                                                                                                                                                                                                                                                                  
+Sankalpa,Gupta                       30000                                                                                                                                                                                                                                                                  
+
+SQL> SELECT FName||', '||LName AS "Name", Salary FROM Employee_1881;
+
+Name                                 SALARY                                                                                                                                                                                                                                                                 
+-------------------------------- ----------                                                                                                                                                                                                                                                                 
+Aritra, Pal                           50000                                                                                                                                                                                                                                                                 
+Sarita, Mishra                       100000                                                                                                                                                                                                                                                                 
+Komal, Pandey                         10000                                                                                                                                                                                                                                                                 
+Sankalpa, Gupta                       30000                                                                                                                                                                                                                                                                 
+
+SQL> SELECT * FROM Employee_1881 WHERE Commission=NULL;
+
+no rows selected
+
+SQL> SELECT * FROM Employee_1881;
+
+EMPLOYEEID LNAME           FNAME           POSITIONID SUPERVISOR      HIREDATE      SALARY COMMISSION     DEPTID     QUALID                                                                                                                                                                                 
+---------- --------------- --------------- ---------- --------------- --------- ---------- ---------- ---------- ----------                                                                                                                                                                                 
+       100 Pal             Aritra                  50 Rajdeep         16-JAN-20      50000                    20         34                                                                                                                                                                                 
+       115 Mishra          Sarita                  72 Samaresh        19-JAN-09     100000       5000         20         39                                                                                                                                                                                 
+       203 Pandey          Komal                   50 Sarita          29-DEC-23      10000        500         16         39                                                                                                                                                                                 
+       209 Gupta           Sankalpa                72 Rajdeep         15-JUL-20      30000                    23                                                                                                                                                                                            
+
+SQL> SELECT * FROM Employee_1881 WHERE Commission=5000;
+
+EMPLOYEEID LNAME           FNAME           POSITIONID SUPERVISOR      HIREDATE      SALARY COMMISSION     DEPTID     QUALID                                                                                                                                                                                 
+---------- --------------- --------------- ---------- --------------- --------- ---------- ---------- ---------- ----------                                                                                                                                                                                 
+       115 Mishra          Sarita                  72 Samaresh        19-JAN-09     100000       5000         20         39                                                                                                                                                                                 
+
+SQL> SELECT * FROM Employee_1881 WHERE Commission=NULL;
+
+no rows selected
+
+SQL> SELECT DISTINCT Location FROM Dept_1881;
+
+LOCATION                                                                                                                                                                                                                                                                                                    
+---------------                                                                                                                                                                                                                                                                                             
+Bhubaneswar                                                                                                                                                                                                                                                                                                 
+Hyderabad                                                                                                                                                                                                                                                                                                   
+
+SQL> SELECT Fname from Employee_1881 where FName LIKE 'S%a';
+
+FNAME                                                                                                                                                                                                                                                                                                       
+---------------                                                                                                                                                                                                                                                                                             
+Sarita                                                                                                                                                                                                                                                                                                      
+Sankalpa                                                                                                                                                                                                                                                                                                    
+
+SQL> SELECT * FROM Employee_1881 WHERE Commission= ;
+SELECT * FROM Employee_1881 WHERE Commission= 
+                                             *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> SELECT * FROM Employee_1881 WHERE Commission='';
+
+no rows selected
+
+SQL> SELECT * FROM Employee_1881 WHERE Commission=' ';
+SELECT * FROM Employee_1881 WHERE Commission=' '
+                                             *
+ERROR at line 1:
+ORA-01722: invalid number 
+
+
+SQL> update table Employee_1881 set Commission=0 where EmployeeId=100;
+update table Employee_1881 set Commission=0 where EmployeeId=100
+       *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> update Employee_1881 set Commission=0 where EmployeeId=100;
+
+1 row updated.
+
+SQL> update Employee_1881 set Commission=0 where EmployeeId=209;
+
+1 row updated.
+
+SQL> SELECT * FROM EMPLOYEE_1881;
+
+EMPLOYEEID LNAME           FNAME           POSITIONID SUPERVISOR      HIREDATE      SALARY COMMISSION     DEPTID     QUALID                                                                                                                                                                                 
+---------- --------------- --------------- ---------- --------------- --------- ---------- ---------- ---------- ----------                                                                                                                                                                                 
+       100 Pal             Aritra                  50 Rajdeep         16-JAN-20      50000          0         20         34                                                                                                                                                                                 
+       115 Mishra          Sarita                  72 Samaresh        19-JAN-09     100000       5000         20         39                                                                                                                                                                                 
+       203 Pandey          Komal                   50 Sarita          29-DEC-23      10000        500         16         39                                                                                                                                                                                 
+       209 Gupta           Sankalpa                72 Rajdeep         15-JUL-20      30000          0         23                                                                                                                                                                                            
+
+SQL> Select * from employee where commission=0;
+Select * from employee where commission=0
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> Select * from employee_1881 where commission=0;
+
+EMPLOYEEID LNAME           FNAME           POSITIONID SUPERVISOR      HIREDATE      SALARY COMMISSION     DEPTID     QUALID                                                                                                                                                                                 
+---------- --------------- --------------- ---------- --------------- --------- ---------- ---------- ---------- ----------                                                                                                                                                                                 
+       100 Pal             Aritra                  50 Rajdeep         16-JAN-20      50000          0         20         34                                                                                                                                                                                 
+       209 Gupta           Sankalpa                72 Rajdeep         15-JUL-20      30000          0         23                                                                                                                                                                                            
+
+SQL> Select * from employee_1881 where (TO_DATE('01-01-2018', 'DD-MON-YYYY')-HireDate) <5;
+Select * from employee_1881 where (TO_DATE('01-01-2018', 'DD-MON-YYYY')-HireDate) <5
+                                           *
+ERROR at line 1:
+ORA-01843: not a valid month 
+
+
+SQL> Select * from employee_1881 where (TO_DATE('01-Jan-2018', 'DD-MON-YYYY')-HireDate) <5;
+
+EMPLOYEEID LNAME           FNAME           POSITIONID SUPERVISOR      HIREDATE      SALARY COMMISSION     DEPTID     QUALID                                                                                                                                                                                 
+---------- --------------- --------------- ---------- --------------- --------- ---------- ---------- ---------- ----------                                                                                                                                                                                 
+       100 Pal             Aritra                  50 Rajdeep         16-JAN-20      50000          0         20         34                                                                                                                                                                                 
+       203 Pandey          Komal                   50 Sarita          29-DEC-23      10000        500         16         39                                                                                                                                                                                 
+       209 Gupta           Sankalpa                72 Rajdeep         15-JUL-20      30000          0         23                                                                                                                                                                                            
+
+SQL> SELECT FName||', '||LName AS Name, Salary from Employee_1881;
+
+NAME                                 SALARY                                                                                                                                                                                                                                                                 
+-------------------------------- ----------                                                                                                                                                                                                                                                                 
+Aritra, Pal                           50000                                                                                                                                                                                                                                                                 
+Sarita, Mishra                       100000                                                                                                                                                                                                                                                                 
+Komal, Pandey                         10000                                                                                                                                                                                                                                                                 
+Sankalpa, Gupta                       30000                                                                                                                                                                                                                                                                 
+
+SQL> SELECT * FROM Employee WHERE Commission=0;
+SELECT * FROM Employee WHERE Commission=0
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> SELECT * FROM Employee_1881 WHERE Commission=0;
+
+EMPLOYEEID LNAME           FNAME           POSITIONID SUPERVISOR      HIREDATE      SALARY COMMISSION     DEPTID     QUALID                                                                                                                                                                                 
+---------- --------------- --------------- ---------- --------------- --------- ---------- ---------- ---------- ----------                                                                                                                                                                                 
+       100 Pal             Aritra                  50 Rajdeep         16-JAN-20      50000          0         20         34                                                                                                                                                                                 
+       209 Gupta           Sankalpa                72 Rajdeep         15-JUL-20      30000          0         23                                                                                                                                                                                            
+
+SQL> SELECT DISTINCT Location FROM Dept_1881;
+
+LOCATION                                                                                                                                                                                                                                                                                                    
+---------------                                                                                                                                                                                                                                                                                             
+Bhubaneswar                                                                                                                                                                                                                                                                                                 
+Hyderabad                                                                                                                                                                                                                                                                                                   
+
+SQL> SELECT FName||' '||LName AS Name from Employee_1881 WHERE FName LIKE 'S%a';
+
+NAME                                                                                                                                                                                                                                                                                                        
+-------------------------------                                                                                                                                                                                                                                                                             
+Sarita Mishra                                                                                                                                                                                                                                                                                               
+Sankalpa Gupta                                                                                                                                                                                                                                                                                              
+
+SQL> SELECT * FROM Employee_1881 WHERE (TO_DATE('01-Jan-2018', 'DD-MON-YYYY')-HireDate) < 5;
+
+EMPLOYEEID LNAME           FNAME           POSITIONID SUPERVISOR      HIREDATE      SALARY COMMISSION     DEPTID     QUALID                                                                                                                                                                                 
+---------- --------------- --------------- ---------- --------------- --------- ---------- ---------- ---------- ----------                                                                                                                                                                                 
+       100 Pal             Aritra                  50 Rajdeep         16-JAN-20      50000          0         20         34                                                                                                                                                                                 
+       203 Pandey          Komal                   50 Sarita          29-DEC-23      10000        500         16         39                                                                                                                                                                                 
+       209 Gupta           Sankalpa                72 Rajdeep         15-JUL-20      30000          0         23                                                                                                                                                                                            
+
+SQL> spool end;
