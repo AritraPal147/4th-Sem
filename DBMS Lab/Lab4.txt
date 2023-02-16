@@ -1,0 +1,749 @@
+SQL> create table Product_1881(
+  2  ID integer,
+  3  ;
+
+*
+ERROR at line 3:
+ORA-00904: : invalid identifier 
+
+
+SQL> create table Product_1881(
+  2  ID integer not null unique,
+  3  name varchar2(20) not null,
+  4  Desc VARCHAR2(20),
+  5  Status VARCHAR2(10),
+  6  Created_Date Date,
+  7  Created_By VARCHAR2(20),
+  8  Last_Modified DATE,
+  9  Last_Modified_By VARCHAR2(20),
+ 10  Cost INTEGER,
+ 11  Injected_Date DATE);
+Desc VARCHAR2(20),
+*
+ERROR at line 4:
+ORA-00904: : invalid identifier 
+
+
+SQL> create table Product_1881(
+  2  ID integer not null unique,
+  3  Name varchar2(20) not null,
+  4  Desc VARCHAR2(20),
+  5  Status VARCHAR2(10),
+  6  Created_Date Date,
+  7  Created_By VARCHAR2(20),
+  8  Last_Modified_Date DATE,
+  9  Cost INTEGER,
+ 10  Injected_Date DATE);
+Desc VARCHAR2(20),
+*
+ERROR at line 4:
+ORA-00904: : invalid identifier 
+
+
+SQL> create table Product_1881(
+  2  ID integer not null unique,
+  3  name varchar2(20) not null,
+  4  Description VARCHAR2(20),
+  5  Status VARCHAR2(10),
+  6  Created_Date Date,
+  7  Created_By VARCHAR2(20),
+  8  Last_Modified_Date DATE,
+  9  Cost INTEGER,
+ 10  Injected_Date DATE);
+
+Table created.
+
+SQL> CREATE TABLE Job_1881(
+  2  ID INTEGER NOT NULL UNIQUE,
+  3  Name VARCHAR2(20) NOT NULL,
+  4  Title VARCHAR2(20),
+  5  Salary INTEGER NOT NULL,
+  6  Bonus INTEGER,
+  7  Injected_Date DATE);
+
+Table created.
+
+SQL> DESC Product_1881;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL NUMBER(38)
+ NAME                                      NOT NULL VARCHAR2(20)
+ DESCRIPTION                                        VARCHAR2(20)
+ STATUS                                             VARCHAR2(10)
+ CREATED_DATE                                       DATE
+ CREATED_BY                                         VARCHAR2(20)
+ LAST_MODIFIED_DATE                                 DATE
+ COST                                               NUMBER(38)
+ INJECTED_DATE                                      DATE
+
+SQL> SET linesize 400;
+SQL> DESC Product_1881;
+ Name                                                                                                                                                                                                                                      Null?    Type
+ ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------- ------------------------------------------------------------------------------------------------------------------------------------------------------------
+ ID                                                                                                                                                                                                                                        NOT NULL NUMBER(38)
+ NAME                                                                                                                                                                                                                                      NOT NULL VARCHAR2(20)
+ DESCRIPTION                                                                                                                                                                                                                                        VARCHAR2(20)
+ STATUS                                                                                                                                                                                                                                             VARCHAR2(10)
+ CREATED_DATE                                                                                                                                                                                                                                       DATE
+ CREATED_BY                                                                                                                                                                                                                                         VARCHAR2(20)
+ LAST_MODIFIED_DATE                                                                                                                                                                                                                                 DATE
+ COST                                                                                                                                                                                                                                               NUMBER(38)
+ INJECTED_DATE                                                                                                                                                                                                                                      DATE
+
+SQL> ;
+  1  CREATE TABLE Job_1881(
+  2  ID INTEGER NOT NULL UNIQUE,
+  3  Name VARCHAR2(20) NOT NULL,
+  4  Title VARCHAR2(20),
+  5  Salary INTEGER NOT NULL,
+  6  Bonus INTEGER,
+  7* Injected_Date DATE)
+SQL> ;
+  1  CREATE TABLE Job_1881(
+  2  ID INTEGER NOT NULL UNIQUE,
+  3  Name VARCHAR2(20) NOT NULL,
+  4  Title VARCHAR2(20),
+  5  Salary INTEGER NOT NULL,
+  6  Bonus INTEGER,
+  7* Injected_Date DATE)
+SQL> ;
+  1  CREATE TABLE Job_1881(
+  2  ID INTEGER NOT NULL UNIQUE,
+  3  Name VARCHAR2(20) NOT NULL,
+  4  Title VARCHAR2(20),
+  5  Salary INTEGER NOT NULL,
+  6  Bonus INTEGER,
+  7* Injected_Date DATE)
+SQL> INSERT INTO Product VALUES(
+  2  100, 'MotherBoard', 'For CPU', 'Active', TO_DATE('16-May-1991', 'DD-MON-YYYY'), 'Indira D', TO_DATE('20-Mar-2017', 'DD-MON-YYYY'), 'Manish R', 7000, TO_DATE('03-Feb-2019', 'DD-MON-YYYY'));
+INSERT INTO Product VALUES(
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> INSERT INTO Product_1881 VALUES(
+  2  100, 'MotherBoard', 'For CPU', 'Active', TO_DATE('16-May-1991', 'DD-MON-YYYY'), 'Indira D', TO_DATE('20-Mar-2017', 'DD-MON-YYYY'), 'Manish R', 7000, TO_DATE('03-Feb-2019', 'DD-MON-YYYY'));
+INSERT INTO Product_1881 VALUES(
+            *
+ERROR at line 1:
+ORA-00913: too many values 
+
+
+SQL> INSERT INTO Product VALUES(
+  2  100, 'MotherBoard', 'For CPU', 'Active', TO_DATE('16-May-1991', 'DD-MON-YYYY'), 'Indira D', TO_DATE('20-Mar-2017', 'DD-MON-YYYY'), 'Manish R', 7000, TO_DATE('03-Feb-2019', 'DD-MON-YYYY'));
+INSERT INTO Product VALUES(
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> desc Prodect_1881
+ERROR:
+ORA-04043: object Prodect_1881 does not exist 
+
+
+SQL> desc Product_1881;
+ Name                                                                                                                                                                                                                                      Null?    Type
+ ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------- ------------------------------------------------------------------------------------------------------------------------------------------------------------
+ ID                                                                                                                                                                                                                                        NOT NULL NUMBER(38)
+ NAME                                                                                                                                                                                                                                      NOT NULL VARCHAR2(20)
+ DESCRIPTION                                                                                                                                                                                                                                        VARCHAR2(20)
+ STATUS                                                                                                                                                                                                                                             VARCHAR2(10)
+ CREATED_DATE                                                                                                                                                                                                                                       DATE
+ CREATED_BY                                                                                                                                                                                                                                         VARCHAR2(20)
+ LAST_MODIFIED_DATE                                                                                                                                                                                                                                 DATE
+ COST                                                                                                                                                                                                                                               NUMBER(38)
+ INJECTED_DATE                                                                                                                                                                                                                                      DATE
+
+SQL> alter table Product_1881 add column Last_Modified_By VARCHAR2(20);
+alter table Product_1881 add column Last_Modified_By VARCHAR2(20)
+                             *
+ERROR at line 1:
+ORA-00904: : invalid identifier 
+
+
+SQL> alter table Product_1881 add Last_Modified_By VARCHAR2(20);
+
+Table altered.
+
+SQL> desc Product_1881;
+ Name                                                                                                                                                                                                                                      Null?    Type
+ ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------- ------------------------------------------------------------------------------------------------------------------------------------------------------------
+ ID                                                                                                                                                                                                                                        NOT NULL NUMBER(38)
+ NAME                                                                                                                                                                                                                                      NOT NULL VARCHAR2(20)
+ DESCRIPTION                                                                                                                                                                                                                                        VARCHAR2(20)
+ STATUS                                                                                                                                                                                                                                             VARCHAR2(10)
+ CREATED_DATE                                                                                                                                                                                                                                       DATE
+ CREATED_BY                                                                                                                                                                                                                                         VARCHAR2(20)
+ LAST_MODIFIED_DATE                                                                                                                                                                                                                                 DATE
+ COST                                                                                                                                                                                                                                               NUMBER(38)
+ INJECTED_DATE                                                                                                                                                                                                                                      DATE
+ LAST_MODIFIED_BY                                                                                                                                                                                                                                   VARCHAR2(20)
+
+SQL> INSERT INTO Product VALUES(
+  2  100, 'MotherBoard', 'For CPU', 'Active', TO_DATE('16-May-1991', 'DD-MON-YYYY'), 'Indira D', TO_DATE('20-Mar-2017', 'DD-MON-YYYY'), 7000, TO_DATE('03-Feb-2019', 'DD-MON-YYYY'), 'Manish R');
+INSERT INTO Product VALUES(
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> INSERT INTO Product_1881 VALUES(
+  2  100, 'MotherBoard', 'For CPU', 'Active', TO_DATE('16-May-1991', 'DD-MON-YYYY'), 'Indira D', TO_DATE('20-Mar-2017', 'DD-MON-YYYY'), 7000, TO_DATE('03-Feb-2019', 'DD-MON-YYYY'), 'Manish R');
+
+1 row created.
+
+SQL> select * from Product_1881;
+
+        ID NAME                 DESCRIPTION          STATUS     CREATED_D CREATED_BY           LAST_MODI       COST INJECTED_ LAST_MODIFIED_BY                                                                                                                                                                                                                                                                  
+---------- -------------------- -------------------- ---------- --------- -------------------- --------- ---------- --------- --------------------                                                                                                                                                                                                                                                              
+       100 MotherBoard          For CPU              Active     16-MAY-91 Indira D             20-MAR-17       7000 03-FEB-19 Manish R                                                                                                                                                                                                                                                                          
+
+SQL> alter table Product_1881 set DESCRIPTION varchar2(10);
+alter table Product_1881 set DESCRIPTION varchar2(10)
+                             *
+ERROR at line 1:
+ORA-02000: missing UNUSED keyword 
+
+
+SQL> alter table Product_1881 modify DESCRIPTION varchar2(10);
+
+Table altered.
+
+SQL> select * from Product_1881;
+
+        ID NAME                 DESCRIPTIO STATUS     CREATED_D CREATED_BY           LAST_MODI       COST INJECTED_ LAST_MODIFIED_BY                                                                                                                                                                                                                                                                            
+---------- -------------------- ---------- ---------- --------- -------------------- --------- ---------- --------- --------------------                                                                                                                                                                                                                                                                        
+       100 MotherBoard          For CPU    Active     16-MAY-91 Indira D             20-MAR-17       7000 03-FEB-19 Manish R                                                                                                                                                                                                                                                                                    
+
+SQL> alter table Product_1881 set DESCRIPTION varchar2(11);
+alter table Product_1881 set DESCRIPTION varchar2(11)
+                             *
+ERROR at line 1:
+ORA-02000: missing UNUSED keyword 
+
+
+SQL> alter table Product_1881 modify DESCRIPTION varchar2(11);
+
+Table altered.
+
+SQL> alter table Product_1881 modify Created_by varchar2(15);
+
+Table altered.
+
+SQL> select * from Product_1881;
+
+        ID NAME                 DESCRIPTION STATUS     CREATED_D CREATED_BY      LAST_MODI       COST INJECTED_ LAST_MODIFIED_BY                                                                                                                                                                                                                                                                                
+---------- -------------------- ----------- ---------- --------- --------------- --------- ---------- --------- --------------------                                                                                                                                                                                                                                                                            
+       100 MotherBoard          For CPU     Active     16-MAY-91 Indira D        20-MAR-17       7000 03-FEB-19 Manish R                                                                                                                                                                                                                                                                                        
+
+SQL> INSERT INTO Product_1881 VALUES(
+  2  100, 'MotherBoard', 'For CPU', 'Active', TO_DATE('16-May-1991', 'DD-MON-YYYY'), 'Indira D', TO_DATE('20-Mar-2017', 'DD-MON-YYYY'), 7000, TO_DATE('03-Feb-2019', 'DD-MON-YYYY'), 'Manish R');
+INSERT INTO Product_1881 VALUES(
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SYS.SYS_C008404) violated 
+
+
+SQL> INSERT INTO Product_1881 VALUES(
+  2  100, 'GPU', 'Graphics', 'Active', TO_DATE('23-Mar-2000', 'DD-MON-YYYY'), 'Oindrila D', TO_DATE('28-Feb-2020', 'DD-MON-YYYY'), 7000, TO_DATE('03-Feb-2019', 'DD-MON-YYYY'), 'Manish R')
+  3  kjldf;
+kjldf
+*
+ERROR at line 3:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> INSERT INTO Product_1881 VALUES(
+  2  110, 'GPU', 'Graphics', 'Active', TO_DATE('23-Mar-2000', 'DD-MON-YYYY', 'Oindrilla D', TO_Date('28th-Feb-2020', 'DD-MON-YYYY'),
+  3  10000, TO_DATE('16-Dec-2021', 'DD-MON-YYYY'), 'Isha M');
+10000, TO_DATE('16-Dec-2021', 'DD-MON-YYYY'), 'Isha M')
+                                                      *
+ERROR at line 3:
+ORA-00917: missing comma 
+
+
+SQL> INSERT INTO Product_1881 VALUES(
+  2  110, 'GPU', 'Graphics', 'Active', TO_DATE('23-Mar-2000', 'DD-MON-YYYY'), 'Oindrilla D', TO_Date('28th-Feb-2020', 'DD-MON-YYYY'),
+  3  10000, TO_DATE('16-Dec-2021', 'DD-MON-YYYY'), 'Isha M');
+110, 'GPU', 'Graphics', 'Active', TO_DATE('23-Mar-2000', 'DD-MON-YYYY'), 'Oindrilla D', TO_Date('28th-Feb-2020', 'DD-MON-YYYY'),
+                                                                                                *
+ERROR at line 2:
+ORA-01861: literal does not match format string 
+
+
+SQL> INSERT INTO Product_1881 VALUES(
+  2  110, 'GPU', 'Graphics', 'Active', TO_DATE('23-Mar-2000', 'DD-MON-YYYY', 'Oindrilla D', TO_Date('28-Feb-2020', 'DD-MON-YYYY'),
+  3  10000, TO_DATE('16-Dec-2021', 'DD-MON-YYYY'), 'Isha M');
+10000, TO_DATE('16-Dec-2021', 'DD-MON-YYYY'), 'Isha M')
+                                                      *
+ERROR at line 3:
+ORA-00917: missing comma 
+
+
+SQL> INSERT INTO Product_1881 VALUES(
+  2  110, 'GPU', 'Graphics', 'Active', TO_DATE('23-Mar-2000', 'DD-MON-YYYY'), 'Oindrilla D', TO_Date('28-Feb-2020', 'DD-MON-YYYY'),
+  3  10000, TO_DATE('16-Dec-2021', 'DD-MON-YYYY'), 'Isha M');
+
+1 row created.
+
+SQL> INSERT INTO Product_1881 VALUES(
+  2  120, 'Processor','Processing','Inactive',TO_DATE('23-Sep-1980','DD-MON-YYYY'), 'Indira D', TO_Date('30-May-2023','DD-MON-YYYY'),
+  3  6000, TO_DATE('05-Oct-2023', 'DD-MON-YYYY'), 'Aritra P');
+
+1 row created.
+
+SQL> select * from Product_1881;
+
+        ID NAME                 DESCRIPTION STATUS     CREATED_D CREATED_BY      LAST_MODI       COST INJECTED_ LAST_MODIFIED_BY                                                                                                                                                                                                                                                                                
+---------- -------------------- ----------- ---------- --------- --------------- --------- ---------- --------- --------------------                                                                                                                                                                                                                                                                            
+       100 MotherBoard          For CPU     Active     16-MAY-91 Indira D        20-MAR-17       7000 03-FEB-19 Manish R                                                                                                                                                                                                                                                                                        
+       110 GPU                  Graphics    Active     23-MAR-00 Oindrilla D     28-FEB-20      10000 16-DEC-21 Isha M                                                                                                                                                                                                                                                                                          
+       120 Processor            Processing  Inactive   23-SEP-80 Indira D        30-MAY-23       6000 05-OCT-23 Aritra P                                                                                                                                                                                                                                                                                        
+
+SQL> INSERT INTO Job_1881 VALUES(
+  2  1, "Software Engineer", 'SE', 110000, NULL, TO_DATE('03-Feb-2019', 'DD-MON-YYYY'));
+1, "Software Engineer", 'SE', 110000, NULL, TO_DATE('03-Feb-2019', 'DD-MON-YYYY'))
+   *
+ERROR at line 2:
+ORA-00984: column not allowed here 
+
+
+SQL> INSERT INTO Job_1881 VALUES(
+  2  1, Software Engineer, 'SE', 110000, NULL, TO_DATE('03-Feb-2019', 'DD-MON-YYYY'));
+1, Software Engineer, 'SE', 110000, NULL, TO_DATE('03-Feb-2019', 'DD-MON-YYYY'))
+            *
+ERROR at line 2:
+ORA-00917: missing comma 
+
+
+SQL> INSERT INTO Job_1881 VALUES(
+  2  1, 'Software Engineer', 'SE', 110000, NULL, TO_DATE('03-Feb-2019', 'DD-MON-YYYY'));
+
+1 row created.
+
+SQL> INSERT INTO Job_1881 VALUES(
+  2  2, 'Mechanical Engineer', 'ME', 49000, NULL, TO_DATE('28-Feb-2020', 'DD-MON-YYYY'));
+
+1 row created.
+
+SQL> INSERT INTO Job_1881 VALUES(
+  2  3, 'Electronics Engineer', 'ElecE', 75000, NULL, TO_DATE('30-May-2023', 'DD-MON-YYYY'));
+
+1 row created.
+
+SQL> select * from JOB_1881;
+
+        ID NAME                 TITLE                    SALARY      BONUS INJECTED_                                                                                                                                                                                                                                                                                                                            
+---------- -------------------- -------------------- ---------- ---------- ---------                                                                                                                                                                                                                                                                                                                            
+         1 Software Engineer    SE                       110000            03-FEB-19                                                                                                                                                                                                                                                                                                                            
+         2 Mechanical Engineer  ME                        49000            28-FEB-20                                                                                                                                                                                                                                                                                                                            
+         3 Electronics Engineer ElecE                     75000            30-MAY-23                                                                                                                                                                                                                                                                                                                            
+
+SQL> select * from Product_1881l
+  2  ;
+select * from Product_1881l
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> select * from Product_1881;
+
+        ID NAME                 DESCRIPTION STATUS     CREATED_D CREATED_BY      LAST_MODI       COST INJECTED_ LAST_MODIFIED_BY                                                                                                                                                                                                                                                                                
+---------- -------------------- ----------- ---------- --------- --------------- --------- ---------- --------- --------------------                                                                                                                                                                                                                                                                            
+       100 MotherBoard          For CPU     Active     16-MAY-91 Indira D        20-MAR-17       7000 03-FEB-19 Manish R                                                                                                                                                                                                                                                                                        
+       110 GPU                  Graphics    Active     23-MAR-00 Oindrilla D     28-FEB-20      10000 16-DEC-21 Isha M                                                                                                                                                                                                                                                                                          
+       120 Processor            Processing  Inactive   23-SEP-80 Indira D        30-MAY-23       6000 05-OCT-23 Aritra P                                                                                                                                                                                                                                                                                        
+
+SQL> select * from JOB_1881;
+
+        ID NAME                 TITLE                    SALARY      BONUS INJECTED_                                                                                                                                                                                                                                                                                                                            
+---------- -------------------- -------------------- ---------- ---------- ---------                                                                                                                                                                                                                                                                                                                            
+         1 Software Engineer    SE                       110000            03-FEB-19                                                                                                                                                                                                                                                                                                                            
+         2 Mechanical Engineer  ME                        49000            28-FEB-20                                                                                                                                                                                                                                                                                                                            
+         3 Electronics Engineer ElecE                     75000            30-MAY-23                                                                                                                                                                                                                                                                                                                            
+
+SQL> select Max(Cost), Min(Cost) from Product_1881 group by Created_by;
+
+ MAX(COST)  MIN(COST)                                                                                                                                                                                                                                                                                                                                                                                           
+---------- ----------                                                                                                                                                                                                                                                                                                                                                                                           
+     10000      10000                                                                                                                                                                                                                                                                                                                                                                                           
+      7000       6000                                                                                                                                                                                                                                                                                                                                                                                           
+
+SQL> select Created_By as Product Creator, Max(Cost), Min(Cost) from Product_1881 group by Created_by;
+select Created_By as Product Creator, Max(Cost), Min(Cost) from Product_1881 group by Created_by
+                             *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> select Created_By as Product_Creator, Max(Cost), Min(Cost) from Product_1881 group by Created_by;
+
+PRODUCT_CREATOR  MAX(COST)  MIN(COST)                                                                                                                                                                                                                                                                                                                                                                           
+--------------- ---------- ----------                                                                                                                                                                                                                                                                                                                                                                           
+Oindrilla D          10000      10000                                                                                                                                                                                                                                                                                                                                                                           
+Indira D              7000       6000                                                                                                                                                                                                                                                                                                                                                                           
+
+SQL> alter table product_1881 set Last_modified_by 'Manish R' where ID=120;
+alter table product_1881 set Last_modified_by 'Manish R' where ID=120
+                             *
+ERROR at line 1:
+ORA-02000: missing UNUSED keyword 
+
+
+SQL> update table product_1881 set Last_modified_by 'Manish R' where ID=120;
+update table product_1881 set Last_modified_by 'Manish R' where ID=120
+       *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> update product_1881 set Last_modified_by 'Manish R' where ID=120;
+update product_1881 set Last_modified_by 'Manish R' where ID=120
+                                         *
+ERROR at line 1:
+ORA-00927: missing equal sign 
+
+
+SQL> update product_1881 set Last_modified_by='Manish R' where ID=120;
+
+1 row updated.
+
+SQL> select * from Product_1881;
+
+        ID NAME                 DESCRIPTION STATUS     CREATED_D CREATED_BY      LAST_MODI       COST INJECTED_ LAST_MODIFIED_BY                                                                                                                                                                                                                                                                                
+---------- -------------------- ----------- ---------- --------- --------------- --------- ---------- --------- --------------------                                                                                                                                                                                                                                                                            
+       100 MotherBoard          For CPU     Active     16-MAY-91 Indira D        20-MAR-17       7000 03-FEB-19 Manish R                                                                                                                                                                                                                                                                                        
+       110 GPU                  Graphics    Active     23-MAR-00 Oindrilla D     28-FEB-20      10000 16-DEC-21 Isha M                                                                                                                                                                                                                                                                                          
+       120 Processor            Processing  Inactive   23-SEP-80 Indira D        30-MAY-23       6000 05-OCT-23 Manish R                                                                                                                                                                                                                                                                                        
+
+SQL> select Last_Modified_By as 'Last Modifier', SUM(Cost), AVG(Cost) group by Last_Modified_By;
+select Last_Modified_By as 'Last Modifier', SUM(Cost), AVG(Cost) group by Last_Modified_By
+                           *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> select Last_Modified_By as 'Last Modifier', SUM(Cost), AVG(Cost) FROM Product_1881 GROUP BY Last_Modified_By;
+select Last_Modified_By as 'Last Modifier', SUM(Cost), AVG(Cost) FROM Product_1881 GROUP BY Last_Modified_By
+                           *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> select Created_By as Product_Creator, Max(Cost), Min(Cost) from Product_1881 group by Created_by;
+
+PRODUCT_CREATOR  MAX(COST)  MIN(COST)                                                                                                                                                                                                                                                                                                                                                                           
+--------------- ---------- ----------                                                                                                                                                                                                                                                                                                                                                                           
+Oindrilla D          10000      10000                                                                                                                                                                                                                                                                                                                                                                           
+Indira D              7000       6000                                                                                                                                                                                                                                                                                                                                                                           
+
+SQL> select Last_Modified_By as "Last Modifier", SUM(Cost), AVG(Cost) FROM Product_1881 GROUP BY Last_Modified_By;
+
+Last Modifier         SUM(COST)  AVG(COST)                                                                                                                                                                                                                                                                                                                                                                      
+-------------------- ---------- ----------                                                                                                                                                                                                                                                                                                                                                                      
+Manish R                  13000       6500                                                                                                                                                                                                                                                                                                                                                                      
+Isha M                    10000      10000                                                                                                                                                                                                                                                                                                                                                                      
+
+SQL> SELECT Created_By as "Product Creator", COUNT(*) as "No. of Products"
+  2  FROM Product_1881
+  3  WHERE Created_By='Indira D' OR Created_By='Oindrilla D';
+SELECT Created_By as "Product Creator", COUNT(*) as "No. of Products"
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function 
+
+
+SQL> SELECT Created_By, COUNT(*)
+  2  FROM Product_1881
+  3  WHERE Created_By='Indira D' OR Created_By='Oindrilla D';
+SELECT Created_By, COUNT(*)
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function 
+
+
+SQL> SELECT COUNT(*)
+  2  FROM Product_1881
+  3  WHERE Created_By='Indira D' OR Created_By='Oindrilla D';
+
+  COUNT(*)                                                                                                                                                                                                                                                                                                                                                                                                      
+----------                                                                                                                                                                                                                                                                                                                                                                                                      
+         3                                                                                                                                                                                                                                                                                                                                                                                                      
+
+SQL> SELECT COUNT(*) as "Number of Products"
+  2  FROM Product_1881
+  3  WHERE Created_By='Indira D' OR Created_By='Oindrilla D';
+
+Number of Products                                                                                                                                                                                                                                                                                                                                                                                              
+------------------                                                                                                                                                                                                                                                                                                                                                                                              
+                 3                                                                                                                                                                                                                                                                                                                                                                                              
+
+SQL> SELECT COUNT(*) as "Number of Products"
+  2  FROM Product_1881
+  3  WHERE Last_Modified_By='Manish R' OR Last_Modified_By='Isha M';
+
+Number of Products                                                                                                                                                                                                                                                                                                                                                                                              
+------------------                                                                                                                                                                                                                                                                                                                                                                                              
+                 3                                                                                                                                                                                                                                                                                                                                                                                              
+
+SQL> SELECT SUM(Salary)
+  2  FROM Job_1881;
+
+SUM(SALARY)                                                                                                                                                                                                                                                                                                                                                                                                     
+-----------                                                                                                                                                                                                                                                                                                                                                                                                     
+     234000                                                                                                                                                                                                                                                                                                                                                                                                     
+
+SQL> update table Job_1881 set Bonus=10000 where ID=1;
+update table Job_1881 set Bonus=10000 where ID=1
+       *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> update Job_1881 set Bonus=10000 where ID=1;
+
+1 row updated.
+
+SQL> select * from JOB_1881;
+
+        ID NAME                 TITLE                    SALARY      BONUS INJECTED_                                                                                                                                                                                                                                                                                                                            
+---------- -------------------- -------------------- ---------- ---------- ---------                                                                                                                                                                                                                                                                                                                            
+         1 Software Engineer    SE                       110000      10000 03-FEB-19                                                                                                                                                                                                                                                                                                                            
+         2 Mechanical Engineer  ME                        49000            28-FEB-20                                                                                                                                                                                                                                                                                                                            
+         3 Electronics Engineer ElecE                     75000            30-MAY-23                                                                                                                                                                                                                                                                                                                            
+
+SQL> update Job_1881 set Bonus=5000 where ID=3;
+
+1 row updated.
+
+SQL> select * from JOB_1881;
+
+        ID NAME                 TITLE                    SALARY      BONUS INJECTED_                                                                                                                                                                                                                                                                                                                            
+---------- -------------------- -------------------- ---------- ---------- ---------                                                                                                                                                                                                                                                                                                                            
+         1 Software Engineer    SE                       110000      10000 03-FEB-19                                                                                                                                                                                                                                                                                                                            
+         2 Mechanical Engineer  ME                        49000            28-FEB-20                                                                                                                                                                                                                                                                                                                            
+         3 Electronics Engineer ElecE                     75000       5000 30-MAY-23                                                                                                                                                                                                                                                                                                                            
+
+SQL> SELECT AVG(Salary)
+  2  FROM Job_1881
+  3  WHERE BONUS IS NOT NULL;
+
+AVG(SALARY)                                                                                                                                                                                                                                                                                                                                                                                                     
+-----------                                                                                                                                                                                                                                                                                                                                                                                                     
+      92500                                                                                                                                                                                                                                                                                                                                                                                                     
+
+SQL> SELECT AVG(Cost), MAX(Cost), MIN(Cost) f
+  2  ;
+
+*
+ERROR at line 2:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT AVG(Cost), MAX(Cost), MIN(Cost)
+  2  FROM Product_1881;
+
+ AVG(COST)  MAX(COST)  MIN(COST)                                                                                                                                                                                                                                                                                                                                                                                
+---------- ---------- ----------                                                                                                                                                                                                                                                                                                                                                                                
+7666.66667      10000       6000                                                                                                                                                                                                                                                                                                                                                                                
+
+SQL> SELECT COUNT(*) AS "Reqd Num of Jobs"
+  2  FROM Job_1881
+  3  WHERE Bonus IS NULL;
+
+Reqd Num of Jobs                                                                                                                                                                                                                                                                                                                                                                                                
+----------------                                                                                                                                                                                                                                                                                                                                                                                                
+               1                                                                                                                                                                                                                                                                                                                                                                                                
+
+SQL> SELECT Last_Modified_Date, Created_Date
+  2  TO_CHAR(Last_Modified_Date, 'MON-YYYY')
+  3  from Product_1881;
+TO_CHAR(Last_Modified_Date, 'MON-YYYY')
+       *
+ERROR at line 2:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT TO_CHAR(Last_Modified_Date, 'MON-YYYY'), TO_CHAR(Created_Date, 'MON-YYYY')
+  2  FROM Product_1881;
+
+TO_CHAR(LAST_MODI TO_CHAR(CREATED_D                                                                                                                                                                                                                                                                                                                                                                             
+----------------- -----------------                                                                                                                                                                                                                                                                                                                                                                             
+MAR-2017          MAY-1991                                                                                                                                                                                                                                                                                                                                                                                      
+FEB-2020          MAR-2000                                                                                                                                                                                                                                                                                                                                                                                      
+MAY-2023          SEP-1980                                                                                                                                                                                                                                                                                                                                                                                      
+
+SQL> SELECT TO_CHAR(Last_Modified_Date, 'MON-YYYY') as "Last Modified",
+  2  TO_CHAR(Created_Date, 'MON-YYYY') as "Created Date"
+  3  FROM Product_1881;
+
+Last Modified     Created Date                                                                                                                                                                                                                                                                                                                                                                                  
+----------------- -----------------                                                                                                                                                                                                                                                                                                                                                                             
+MAR-2017          MAY-1991                                                                                                                                                                                                                                                                                                                                                                                      
+FEB-2020          MAR-2000                                                                                                                                                                                                                                                                                                                                                                                      
+MAY-2023          SEP-1980                                                                                                                                                                                                                                                                                                                                                                                      
+
+SQL> SELECT *
+  2  FROM Product_1881
+  3  WHERE MONTH(Created_Date)='May';
+WHERE MONTH(Created_Date)='May'
+      *
+ERROR at line 3:
+ORA-00904: "MONTH": invalid identifier 
+
+
+SQL> SELECT *
+  2  FROM Product_1881
+  3  WHERE TO_CHAR(Created_Date, 'MON')='May';
+
+no rows selected
+
+SQL> SELECT * FROM Product_1881;
+
+        ID NAME                 DESCRIPTION STATUS     CREATED_D CREATED_BY      LAST_MODI       COST INJECTED_ LAST_MODIFIED_BY                                                                                                                                                                                                                                                                                
+---------- -------------------- ----------- ---------- --------- --------------- --------- ---------- --------- --------------------                                                                                                                                                                                                                                                                            
+       100 MotherBoard          For CPU     Active     16-MAY-91 Indira D        20-MAR-17       7000 03-FEB-19 Manish R                                                                                                                                                                                                                                                                                        
+       110 GPU                  Graphics    Active     23-MAR-00 Oindrilla D     28-FEB-20      10000 16-DEC-21 Isha M                                                                                                                                                                                                                                                                                          
+       120 Processor            Processing  Inactive   23-SEP-80 Indira D        30-MAY-23       6000 05-OCT-23 Manish R                                                                                                                                                                                                                                                                                        
+
+SQL> SELECT *
+  2  FROM Product_1881
+  3  WHERE TO_CHAR(Created_Date, 'MON')='MAY';
+
+        ID NAME                 DESCRIPTION STATUS     CREATED_D CREATED_BY      LAST_MODI       COST INJECTED_ LAST_MODIFIED_BY                                                                                                                                                                                                                                                                                
+---------- -------------------- ----------- ---------- --------- --------------- --------- ---------- --------- --------------------                                                                                                                                                                                                                                                                            
+       100 MotherBoard          For CPU     Active     16-MAY-91 Indira D        20-MAR-17       7000 03-FEB-19 Manish R                                                                                                                                                                                                                                                                                        
+
+SQL> UPDATE Product_1881 SET Created_Date=TO_DATE('23-SEP-2023', 'DD-MON-YYYY') where ID=120;
+
+1 row updated.
+
+SQL> SELECT *
+  2  FROM Product_1881
+  3  WHERE TO_CHAR(Created_Date, 'YY')='23';
+
+        ID NAME                 DESCRIPTION STATUS     CREATED_D CREATED_BY      LAST_MODI       COST INJECTED_ LAST_MODIFIED_BY                                                                                                                                                                                                                                                                                
+---------- -------------------- ----------- ---------- --------- --------------- --------- ---------- --------- --------------------                                                                                                                                                                                                                                                                            
+       120 Processor            Processing  Inactive   23-SEP-23 Indira D        30-MAY-23       6000 05-OCT-23 Manish R                                                                                                                                                                                                                                                                                        
+
+SQL> SELECT POWER(2, 10) FROM dual;
+
+POWER(2,10)                                                                                                                                                                                                                                                                                                                                                                                                     
+-----------                                                                                                                                                                                                                                                                                                                                                                                                     
+       1024                                                                                                                                                                                                                                                                                                                                                                                                     
+
+SQL> SELECT POWER(2, 10) AS "2^10" FROM dual;
+
+      2^10                                                                                                                                                                                                                                                                                                                                                                                                      
+----------                                                                                                                                                                                                                                                                                                                                                                                                      
+      1024                                                                                                                                                                                                                                                                                                                                                                                                      
+
+SQL> SELECT CEIL(Salary), FLOOR(Salary)
+  2  FROM Job_1881;
+
+CEIL(SALARY) FLOOR(SALARY)                                                                                                                                                                                                                                                                                                                                                                                      
+------------ -------------                                                                                                                                                                                                                                                                                                                                                                                      
+      110000        110000                                                                                                                                                                                                                                                                                                                                                                                      
+       49000         49000                                                                                                                                                                                                                                                                                                                                                                                      
+       75000         75000                                                                                                                                                                                                                                                                                                                                                                                      
+
+SQL> SELECT AVG(Bonus)
+  2  FROM Job_1881;
+
+AVG(BONUS)                                                                                                                                                                                                                                                                                                                                                                                                      
+----------                                                                                                                                                                                                                                                                                                                                                                                                      
+      7500                                                                                                                                                                                                                                                                                                                                                                                                      
+
+SQL> SELECT COUNT(DISTINCT Title)
+  2  FROM jOB_1881;
+
+COUNT(DISTINCTTITLE)                                                                                                                                                                                                                                                                                                                                                                                            
+--------------------                                                                                                                                                                                                                                                                                                                                                                                            
+                   3                                                                                                                                                                                                                                                                                                                                                                                            
+
+SQL> SELECT Name, Description, TO_CHAR(Created_Date, 'DD-MONTH-'YYYY')
+  2  FROM Product_1881;
+ERROR:
+ORA-01756: quoted string not properly terminated 
+
+
+SQL> SELECT Name, Description, TO_CHAR(Created_Date, 'DD-MONTH-YYYY')
+  2  FROM Product_1881;
+
+NAME                 DESCRIPTION TO_CHAR(CREATED_DATE,'DD-MONTH-YYYY')                                                                                                                                                                                                                                                                                                                                          
+-------------------- ----------- --------------------------------------------                                                                                                                                                                                                                                                                                                                                   
+MotherBoard          For CPU     16-MAY      -1991                                                                                                                                                                                                                                                                                                                                                              
+GPU                  Graphics    23-MARCH    -2000                                                                                                                                                                                                                                                                                                                                                              
+Processor            Processing  23-SEPTEMBER-2023                                                                                                                                                                                                                                                                                                                                                              
+
+SQL> SELECT Name, Description, TO_CHAR(Created_Date, 'DD-MONTH-'YYYY') as "Created Date"
+  2  FROM Product_1881;
+ERROR:
+ORA-01756: quoted string not properly terminated 
+
+
+SQL> SELECT Name, Description, TO_CHAR(Created_Date, 'DD-MONTH-YYYY') as "Created Date"
+  2  FROM Product_1881;
+
+NAME                 DESCRIPTION Created Date                                                                                                                                                                                                                                                                                                                                                                   
+-------------------- ----------- --------------------------------------------                                                                                                                                                                                                                                                                                                                                   
+MotherBoard          For CPU     16-MAY      -1991                                                                                                                                                                                                                                                                                                                                                              
+GPU                  Graphics    23-MARCH    -2000                                                                                                                                                                                                                                                                                                                                                              
+Processor            Processing  23-SEPTEMBER-2023                                                                                                                                                                                                                                                                                                                                                              
+
+SQL> SELECT Name, Description
+  2  FROM Product_1881
+  3  ORDER BY LENGTH(Description);
+
+NAME                 DESCRIPTION                                                                                                                                                                                                                                                                                                                                                                                
+-------------------- -----------                                                                                                                                                                                                                                                                                                                                                                                
+MotherBoard          For CPU                                                                                                                                                                                                                                                                                                                                                                                    
+GPU                  Graphics                                                                                                                                                                                                                                                                                                                                                                                   
+Processor            Processing                                                                                                                                                                                                                                                                                                                                                                                 
+
+SQL> SELECT LOWER(Name) as "Product Name", UPPER(Description) as "Description"
+  2  FROM Product_1881;
+
+Product Name         Description                                                                                                                                                                                                                                                                                                                                                                                
+-------------------- -----------                                                                                                                                                                                                                                                                                                                                                                                
+motherboard          FOR CPU                                                                                                                                                                                                                                                                                                                                                                                    
+gpu                  GRAPHICS                                                                                                                                                                                                                                                                                                                                                                                   
+processor            PROCESSING                                                                                                                                                                                                                                                                                                                                                                                 
+
+SQL> SELECT Name||||Description||||Created_Date||||Last_Updated_Date as Data
+  2  FROM Product_1881;
+SELECT Name||||Description||||Created_Date||||Last_Updated_Date as Data
+             *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> SELECT Name|| ||Description|| ||Created_Date|| ||Last_Updated_Date as Data
+  2  FROM Product_1881;
+SELECT Name|| ||Description|| ||Created_Date|| ||Last_Updated_Date as Data
+              *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> SELECT Name||Description||Created_Date||Last_Updated_Date as Data
+  2  FROM Product_1881;
+SELECT Name||Description||Created_Date||Last_Updated_Date as Data
+                                        *
+ERROR at line 1:
+ORA-00904: "LAST_UPDATED_DATE": invalid identifier 
+
+
+SQL> SELECT Name||Description||Created_Date||Last_Modified_Date as Data
+  2  FROM Product_1881;
+
+DATA                                                                                                                                                                                                                                                                                                                                                                                                            
+-------------------------------------------------------------------                                                                                                                                                                                                                                                                                                                                             
+MotherBoardFor CPU16-MAY-9120-MAR-17                                                                                                                                                                                                                                                                                                                                                                            
+GPUGraphics23-MAR-0028-FEB-20                                                                                                                                                                                                                                                                                                                                                                                   
+ProcessorProcessing23-SEP-2330-MAY-23                                                                                                                                                                                                                                                                                                                                                                           
+
+SQL> spool end
