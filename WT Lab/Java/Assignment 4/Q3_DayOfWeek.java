@@ -1,5 +1,5 @@
-// 3) Program to print the corresponding grade for the given mark
-//    using if..else statement in Java.
+// 3) Program to print the corresponding day name for the
+//    given day number using switch..case statement in Java.
 
 
 import java.util.Scanner;
@@ -10,7 +10,7 @@ class Q3_DayOfWeek {
 		Scanner sc = new Scanner(System.in);
 		int dayOfWeek = sc.nextInt();
 		
-		switch(dayOfWeek) {
+		switch (dayOfWeek) {
 			case 1:	
 				System.out.println("Monday");
 				break;

@@ -7,7 +7,7 @@ class Q4_CheckPalindrome {
 		System.out.print("Enter a number to be checked: ");
 		Scanner sc = new Scanner(System.in);
 		int num = sc.nextInt();
-		int revNum = 0; 
+		int revNum = 0
 		int temp = num;
 		
 		while (temp > 0) {
