@@ -1,3 +1,5 @@
+// 4) Program to check if a given number is Palindrome or not.
+
 import java.util.Scanner;
 
 class Q4_CheckPalindrome {

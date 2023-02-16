@@ -1,3 +1,6 @@
+// 2) Program to print the corresponding grade for given mark
+// 	  using if..else statement in Java.
+
 import java.util.Scanner;
 
 class Q2_Find_Grade {

@@ -1,3 +1,7 @@
+// 3) Program to print the corresponding grade for the given mark
+//    using if..else statement in Java.
+
+
 import java.util.Scanner;
 
 class Q3_DayOfWeek {
