@@ -1,0 +1,505 @@
+SQL> Create table Student(
+  2  Roll INTEGER NOT NULL UNIQUE,
+  3  Name VARCHAR2(20) NOT NULL,
+  4  Gender VARCHAR2(6),
+  5  DOB DATE,
+  6  Book_Issue_Date DATE,
+  7  Book_Return_Date DATE,
+  8  PRIMARY KEY (Roll));
+Create table Student(
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> Create table Student_1881(
+  2  Roll INTEGER NOT NULL UNIQUE,
+  3  Name VARCHAR2(20) NOT NULL,
+  4  Gender VARCHAR2(6),
+  5  DOB DATE,
+  6  Book_Issue_Date DATE,
+  7  Book_Return_Date DATE,
+  8  PRIMARY KEY (Roll));
+Roll INTEGER NOT NULL UNIQUE,
+                      *
+ERROR at line 2:
+ORA-02261: such unique or primary key already exists in the table 
+
+
+SQL> select * from Student_1881;
+select * from Student_1881
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> select * from Studentl
+  2  ;
+select * from Studentl
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> select * from Student;
+
+ STUDENTID LAST     FIRST      STREET CITY       STATE              ZIP         
+---------- -------- ---------- ------ ---------- ----------- ----------         
+ STARTTERM BIRTHDATE  FACULTYID    MAJORID      PHONE                           
+---------- --------- ---------- ---------- ----------                           
+  21051800 Bhaumik  Archisman  XYZ    Kolkata    West Bengal     720010         
+      2021 24-MAY-04        504 7.7773E+11 9.8463E+10                           
+                                                                                
+  21051806 Kumar    B.Vinay    ABC    Bilaspur   Chattisgarh      38421         
+      2021 11-NOV-03        501      25623 7893729273                           
+                                                                                
+  21051880 Basak    Anirban    XAC    Malda      West Bengal      73621         
+      2021 29-OCT-02        741      83722  736273382                           
+                                                                                
+
+ STUDENTID LAST     FIRST      STREET CITY       STATE              ZIP         
+---------- -------- ---------- ------ ---------- ----------- ----------         
+ STARTTERM BIRTHDATE  FACULTYID    MAJORID      PHONE                           
+---------- --------- ---------- ---------- ----------                           
+  21051881 Pal      Aritra     SBP    Silguri    West Bengal     734001         
+      2021 23-JAN-03        749      38262 7063393028                           
+                                                                                
+  21051886 Dewangan Ayush      AUS    Korba      Chattisgarh      73421         
+      2021 13-AUG-03        881      24781 9723746139                           
+                                                                                
+
+SQL> drop Student;
+drop Student
+     *
+ERROR at line 1:
+ORA-00950: invalid DROP option 
+
+
+SQL> drop table Student;
+
+Table dropped.
+
+SQL> Create table Student_1881(
+  2  Roll INTEGER NOT NULL UNIQUE,
+  3  Name VARCHAR2(20) NOT NULL,
+  4  Gender VARCHAR2(6),
+  5  DOB DATE,
+  6  Book_Issue_Date DATE,
+  7  Book_Return_Date DATE,
+  8  CONSTRAINT C7 PRIMARY KEY (Roll));
+Roll INTEGER NOT NULL UNIQUE,
+                      *
+ERROR at line 2:
+ORA-02261: such unique or primary key already exists in the table 
+
+
+SQL> select * from Student_1881;
+select * from Student_1881
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> Create table Student_1881(
+  2  Roll NUMBER(10) PRIMARY KEY,
+  3  Name VARCHAR2(20) NOT NULL,
+  4  Gender VARCHAR2(6),
+  5  DOB DATE,
+  6  Book_Issue_Date DATE,
+  7  Book_Return_Date DATE,
+  8  );
+)
+*
+ERROR at line 8:
+ORA-00904: : invalid identifier 
+
+
+SQL> Create table Student_1881(
+  2  Roll NUMBER(10) PRIMARY KEY,
+  3  Name VARCHAR2(20) NOT NULL,
+  4  Gender VARCHAR2(6),
+  5  DOB DATE,
+  6  Book_Issue_Date DATE,
+  7  Book_Return_Date DATE);
+
+Table created.
+
+SQL> desc Student_1881;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLL                                      NOT NULL NUMBER(10)
+ NAME                                      NOT NULL VARCHAR2(20)
+ GENDER                                             VARCHAR2(6)
+ DOB                                                DATE
+ BOOK_ISSUE_DATE                                    DATE
+ BOOK_RETURN_DATE                                   DATE
+
+SQL> Create table Library_1881(
+  2  Book_No NUMBER(10) PRIMARY KEY,
+  3  Book_Author VARCHAR2(20) NOT NULL,
+  4  Book_Publi VARCHAR2(10),
+  5  Book_Name VARCHAR2(20) NOT NULL,
+  6  Book_Page NUMBER(4),
+  7  Book_Price NUMBER(4),
+  8  Purchase_Date DATE,
+  9  Roll NUMBER(10) REFERENCES Student_1881(Roll),
+ 10  Book_Issue_Date DATE,
+ 11  Book_Return_Date DATE);
+
+Table created.
+
+SQL> desc Library_1881;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ BOOK_NO                                   NOT NULL NUMBER(10)
+ BOOK_AUTHOR                               NOT NULL VARCHAR2(20)
+ BOOK_PUBLI                                         VARCHAR2(10)
+ BOOK_NAME                                 NOT NULL VARCHAR2(20)
+ BOOK_PAGE                                          NUMBER(4)
+ BOOK_PRICE                                         NUMBER(4)
+ PURCHASE_DATE                                      DATE
+ ROLL                                               NUMBER(10)
+ BOOK_ISSUE_DATE                                    DATE
+ BOOK_RETURN_DATE                                   DATE
+
+SQL> INSERT INTO Student_1881 VALUES(
+  2  21051800, 'Archisman', 'M', TO_DATE('13-MAY-2004', 'DD-MON-YYYY'), TO_DATE('14-Feb-2023', 'DD-MON-YYYY'), NULL);
+
+1 row created.
+
+SQL> INSERT INTO Student_1881 VALUES(
+  2  21051806, 'B.Vinay', 'M', TO_DATE('11-NOV-2003', 'DD-MON-YYYY'), TO_DATE('1-JAN-2023', 'DD-MON-YYYY'), TO_DATE('23-FEB-2023', 'DD-MON-YYYY'));
+
+1 row created.
+
+SQL> INSERT INTO Student_1881 VALUES(
+  2  21051877, 'Alok', 'M', TO_DATE('19-MAR-2003', 'DD-MON-YYYY'), NULL, NULL));
+21051877, 'Alok', 'M', TO_DATE('19-MAR-2003', 'DD-MON-YYYY'), NULL, NULL))
+                                                                         *
+ERROR at line 2:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> INSERT INTO Student_1881 VALUES(
+  2  21051877, 'Alok', 'M', TO_DATE('19-MAR-2003', 'DD-MON-YYYY'), NULL, NULL);
+
+1 row created.
+
+SQL> INSERT INTO Student_1881 VALUES(
+  2  21051880, 'Anirban', 'M', TO_DATE('15-OCT-2002', 'DD-MON-YYYY'), TO_DATE('16-AUG-2022', 'DD-MON-YYYY'), TO_DATE('20-SEP-2022', 'DD-MON-YYYY'));
+
+1 row created.
+
+SQL> INSERT INTO Student_1881 VALUES(
+  2  21051881, 'Aritra', 'M', TO_DATE('23-JAN-2003', 'DD-MON-YYYY'), TO_DATE('29-DEC-2022', 'DD-MON-YYYY'), TO_DATE('06-JAN-2023', 'DD-MON-YYYY'));
+
+1 row created.
+
+SQL> set linesize 400;
+SQL> select * from Student_1881;
+
+      ROLL NAME                 GENDER DOB       BOOK_ISSU BOOK_RETU                                                                                                                                                                                                                                                                                                                                            
+---------- -------------------- ------ --------- --------- ---------                                                                                                                                                                                                                                                                                                                                            
+  21051800 Archisman            M      13-MAY-04 14-FEB-23                                                                                                                                                                                                                                                                                                                                                      
+  21051806 B.Vinay              M      11-NOV-03 01-JAN-23 23-FEB-23                                                                                                                                                                                                                                                                                                                                            
+  21051877 Alok                 M      19-MAR-03                                                                                                                                                                                                                                                                                                                                                                
+  21051880 Anirban              M      15-OCT-02 16-AUG-22 20-SEP-22                                                                                                                                                                                                                                                                                                                                            
+  21051881 Aritra               M      23-JAN-03 29-DEC-22 06-JAN-23                                                                                                                                                                                                                                                                                                                                            
+
+SQL> drop table Library_1881;
+
+Table dropped.
+
+SQL> CREATE TABLE Library (
+  2      Book_No INT PRIMARY KEY,
+  3      Book_Author VARCHAR(50),
+  4      Book_Publi VARCHAR(50),
+  5      Book_Name VARCHAR(50),
+  6      Book_Page INT,
+  7      Book_Price DECIMAL(8,2),
+  8      Purchase_date DATE,
+  9      Roll INT REFERENCES Student(Roll),
+ 10      Book_Issue_date DATE,
+ 11      Book_Return_date DATE
+ 12  );
+    Roll INT REFERENCES Student(Roll),
+                        *
+ERROR at line 9:
+ORA-00942: table or view does not exist 
+
+
+SQL> CREATE TABLE Library_1881 (
+  2      Book_No INT PRIMARY KEY,
+  3      Book_Author VARCHAR(50),
+  4      Book_Publi VARCHAR(50),
+  5      Book_Name VARCHAR(50),
+  6      Book_Page INT,
+  7      Book_Price INT,
+  8      Purchase_date DATE,
+  9      Roll INT REFERENCES Student_1881(Roll),
+ 10      Book_Issue_date DATE,
+ 11      Book_Return_date DATE
+ 12  );
+
+Table created.
+
+SQL> Insert into Library_1881 (Book_No, Book_Author, Book_Publi, Book_Name, Book_Page, Book_Price, Purchase_Date, Roll, Book_Issue_Date, Book_Return Date)
+  2  VALUES
+  3  (1001, 'J.K. Rowling', 'Oxford', 'Harry Potter', 500, 1000, TO_DATE('20-OCT-2010', 'DD-MON-YYYY'), 21051800, TO_DATE('14-FEB-2023', NULL),
+  4  (1002, 'Dan Brown', 'Hello', 'Solomon's Curse', 600, 1500, TO_DATE('01-JAN-2020', 'DD-MON-YYYY'), 21051806, TO_DATE('01-Jan-2023', 'DD-MON-YYYY'), TO_DATE('23-FEB-2023', 'DD-MON-YYYY')),
+  5  (1003, 'Rick Riordan', 'Penguin', 'Lightning Thief', 350, 300, TO_DATE('20-OCT-2010', 'DD-MON-YYYY'), 21051881, TO_DATE('29-DEC-2022', 'DD-MON-YYYY), TO_DATE('06-JAN-2023', 'DD-MON-YYYY')),
+  6  (1004, 'Satyajit Ray', 'Penguin', 'Feluda', 350, 300, TO_DATE('03-MAY-2005', 'DD-MON-YYYY'), 21051881, TO_DATE('29-DEC-2022', 'DD-MON-YYYY), TO_DATE('06-JAN-2023', 'DD-MON-YYYY')),
+  7  (1004, 'Satyajit Ray', 'Penguin', 'Taranath Tantrik', 500, 780, TO_DATE('03-MAY-2005', 'DD-MON-YYYY'), 21051880, TO_DATE('16-AUG-2022', 'DD-MON-YYYY), TO_DATE('20-SEP-2023', 'DD-MON-YYYY'));
+Insert into Library_1881 (Book_No, Book_Author, Book_Publi, Book_Name, Book_Page, Book_Price, Purchase_Date, Roll, Book_Issue_Date, Book_Return Date)
+                                                                                                                                                *
+ERROR at line 1:
+ORA-00917: missing comma 
+
+
+SQL> Insert into Library_1881 (Book_No, Book_Author, Book_Publi, Book_Name, Book_Page, Book_Price, Purchase_Date, Roll, Book_Issue_Date, Book_Return Date)
+  2  VALUES
+  3  (1001, 'J.K. Rowling', 'Oxford', 'Harry Potter', 500, 1000, TO_DATE('20-OCT-2010', 'DD-MON-YYYY'), 21051800, TO_DATE('14-FEB-2023', NULL),
+  4  (1002, 'Dan Brown', 'Hello', 'Solomon's Curse', 600, 1500, TO_DATE('01-JAN-2020', 'DD-MON-YYYY'), 21051806, TO_DATE('01-Jan-2023', 'DD-MON-YYYY'), TO_DATE('23-FEB-2023', 'DD-MON-YYYY')),
+  5  (1003, 'Rick Riordan', 'Penguin', 'Lightning Thief', 350, 300, TO_DATE('20-OCT-2010', 'DD-MON-YYYY'), 21051881, TO_DATE('29-DEC-2022', 'DD-MON-YYYY), TO_DATE('06-JAN-2023', 'DD-MON-YYYY')),
+  6  (1004, 'Satyajit Ray', 'Penguin', 'Feluda', 350, 300, TO_DATE('03-MAY-2005', 'DD-MON-YYYY'), 21051881, TO_DATE('29-DEC-2022', 'DD-MON-YYYY), TO_DATE('06-JAN-2023', 'DD-MON-YYYY')),
+  7  (1004, 'Satyajit Ray', 'Penguin', 'Taranath Tantrik', 500, 780, TO_DATE('03-MAY-2005', 'DD-MON-YYYY'), 21051880, TO_DATE('16-AUG-2022', 'DD-MON-YYYY), TO_DATE('20-SEP-2023', 'DD-MON-YYYY'));
+Insert into Library_1881 (Book_No, Book_Author, Book_Publi, Book_Name, Book_Page, Book_Price, Purchase_Date, Roll, Book_Issue_Date, Book_Return Date)
+                                                                                                                                                *
+ERROR at line 1:
+ORA-00917: missing comma 
+
+
+SQL> INSERT INTO Library (Book_No, Book_Author, Book_Publi, Book_Name, Book_Page, Book_Price, Purchase_date, Roll, Book_Issue_date, Book_Return_date)
+  2  VALUES
+  3  (1, 'J.K. Rowling', 'Scholastic Inc.', 'Harry Potter and the Philosopher\'s Stone', 223, 12.99, TO_DATE('2022-02-20', 'YYYY-MM-DD'), 1001, TO_DATE('2022-02-25', 'YYYY-MM-DD'), TO_DATE('2022-03-25', 'YYYY-MM-DD')),
+  4  (2, 'J.R.R. Tolkien', 'Houghton Mifflin Harcourt', 'The Lord of the Rings', 1178, 16.99, TO_DATE('2022-02-22', 'YYYY-MM-DD'), 1002, TO_DATE('2022-02-27', 'YYYY-MM-DD'), TO_DATE('2022-03-27', 'YYYY-MM-DD')),
+  5  (3, 'Agatha Christie', 'William Morrow Paperbacks', 'Murder on the Orient Express', 256, 9.99, TO_DATE('2022-02-24', 'YYYY-MM-DD'), 1003, TO_DATE('2022-03-01', 'YYYY-MM-DD'), TO_DATE('2022-04-01', 'YYYY-MM-DD')),
+  6  (4, 'Stephen King', 'Scribner', 'The Shining', 688, 13.99, TO_DATE('2022-02-26', 'YYYY-MM-DD'), 1004, TO_DATE('2022-03-03', 'YYYY-MM-DD'), TO_DATE('2022-04-03', 'YYYY-MM-DD')),
+  7  (5, 'Margaret Atwood', 'Anchor Books', 'The Handmaid\'s Tale', 311, 11.99, TO_DATE('2022-02-28', 'YYYY-MM-DD'), 1005, TO_DATE('2022-03-05', 'YYYY-MM-DD'), TO_DATE('2022-04-05', 'YYYY-MM-DD'));
+(1, 'J.K. Rowling', 'Scholastic Inc.', 'Harry Potter and the Philosopher\'s Stone', 223, 12.99, TO_DATE('2022-02-20', 'YYYY-MM-DD'), 1001, TO_DATE('2022-02-25', 'YYYY-MM-DD'), TO_DATE('2022-03-25', 'YYYY-MM-DD')),
+                                                                          *
+ERROR at line 3:
+ORA-00917: missing comma 
+
+
+SQL> INSERT INTO Library_1881 (Book_No, Book_Author, Book_Publi, Book_Name, Book_Page, Book_Price, Purchase_date, Roll, Book_Issue_date, Book_Return_date)
+  2  VALUES
+  3  (1, 'J.K. Rowling', 'Scholastic Inc.', 'Harry Potter and the Philosopher\'s Stone', 223, 12.99, TO_DATE('2022-02-20', 'YYYY-MM-DD'), 1001, TO_DATE('2022-02-25', 'YYYY-MM-DD'), TO_DATE('2022-03-25', 'YYYY-MM-DD')),
+  4  (2, 'J.R.R. Tolkien', 'Houghton Mifflin Harcourt', 'The Lord of the Rings', 1178, 16.99, TO_DATE('2022-02-22', 'YYYY-MM-DD'), 1002, TO_DATE('2022-02-27', 'YYYY-MM-DD'), TO_DATE('2022-03-27', 'YYYY-MM-DD')),
+  5  (3, 'Agatha Christie', 'William Morrow Paperbacks', 'Murder on the Orient Express', 256, 9.99, TO_DATE('2022-02-24', 'YYYY-MM-DD'), 1003, TO_DATE('2022-03-01', 'YYYY-MM-DD'), TO_DATE('2022-04-01', 'YYYY-MM-DD')),
+  6  (4, 'Stephen King', 'Scribner', 'The Shining', 688, 13.99, TO_DATE('2022-02-26', 'YYYY-MM-DD'), 1004, TO_DATE('2022-03-03', 'YYYY-MM-DD'), TO_DATE('2022-04-03', 'YYYY-MM-DD')),
+  7  (5, 'Margaret Atwood', 'Anchor Books', 'The Handmaid\'s Tale', 311, 11.99, TO_DATE('2022-02-28', 'YYYY-MM-DD'), 1005, TO_DATE('2022-03-05', 'YYYY-MM-DD'), TO_DATE('2022-04-05', 'YYYY-MM-DD'));
+(1, 'J.K. Rowling', 'Scholastic Inc.', 'Harry Potter and the Philosopher\'s Stone', 223, 12.99, TO_DATE('2022-02-20', 'YYYY-MM-DD'), 1001, TO_DATE('2022-02-25', 'YYYY-MM-DD'), TO_DATE('2022-03-25', 'YYYY-MM-DD')),
+                                                                          *
+ERROR at line 3:
+ORA-00917: missing comma 
+
+
+SQL> INSERT INTO Library_1881 VALUES(
+  2  1001, 'J.K. Rowling', 'Oxford', 'Harry Potter', 500, 1000, TO_DATE('20-OCT-2010', 'DD-MON-YYYY'), 21051800, TO_DATE('14-FEB-2023', NULL));
+INSERT INTO Library_1881 VALUES(
+            *
+ERROR at line 1:
+ORA-00947: not enough values 
+
+
+SQL> INSERT INTO Library_1881 VALUES(
+  2  1001, 'J.K. Rowling', 'Oxford', 'Harry Potter', 500, 1000, TO_DATE('20-OCT-2010', 'DD-MON-YYYY'), 21051800, TO_DATE('14-FEB-2023', 'DD_MON-YYYY'), NULL);
+
+1 row created.
+
+SQL> INSERT INTO Library_1881 VALUES(
+  2  1002, 'Dan Brown', 'Hello', 'Solomon's Curse', 600, 1500, TO_DATE('01-JAN-2020', 'DD-MON-YYYY'), 21051806, TO_DATE('01-Jan-2023', 'DD-MON-YYYY'), TO_DATE('23-FEB-2023', 'DD-MON-YYYY'));
+ERROR:
+ORA-01756: quoted string not properly terminated 
+
+
+SQL> INSERT INTO Library_1881 VALUES(
+  2  1002, 'Dan Brown', 'Hello', 'Solomon\'s Curse', 600, 1500, TO_DATE('01-JAN-2020', 'DD-MON-YYYY'), 21051806, TO_DATE('01-Jan-2023', 'DD-MON-YYYY'), TO_DATE('23-FEB-2023', 'DD-MON-YYYY'));
+ERROR:
+ORA-01756: quoted string not properly terminated 
+
+
+SQL> INSERT INTO Library_1881 VALUES(
+  2  1002, 'Dan Brown', 'Hello', 'Solomons Curse', 600, 1500, TO_DATE('01-JAN-2020', 'DD-MON-YYYY'), 21051806, TO_DATE('01-Jan-2023', 'DD-MON-YYYY'), TO_DATE('23-FEB-2023', 'DD-MON-YYYY'));
+
+1 row created.
+
+SQL> INSERT INTO Library_1881 VALUES
+  2  (1003, 'Rick Riordan', 'Penguin', 'Lightning Thief', 350, 300, TO_DATE('20-OCT-2010', 'DD-MON-YYYY'), 21051881, TO_DATE('29-DEC-2022', 'DD-MON-YYYY), TO_DATE('06-JAN-2023', 'DD-MON-YYYY'));
+ERROR:
+ORA-01756: quoted string not properly terminated 
+
+
+SQL> INSERT INTO Library_1881 VALUES
+  2  (1003, 'Rick Riordan', 'Penguin', 'Lightning Thief', 350, 300, TO_DATE('20-OCT-2010', 'DD-MON-YYYY'), 21051881, TO_DATE('29-DEC-2022', 'DD-MON-YYYY'), TO_DATE('06-JAN-2023', 'DD-MON-YYYY'));
+
+1 row created.
+
+SQL> INSERT INTO Library_1881 VALUES
+  2  (1004, 'Satyajit Ray', 'Penguin', 'Feluda', 350, 300, TO_DATE('03-MAY-2005', 'DD-MON-YYYY'), 21051881, TO_DATE('29-DEC-2022', 'DD-MON-YYYY'), TO_DATE('06-JAN-2023', 'DD-MON-YYYY'));
+
+1 row created.
+
+SQL> INSERT INTO Library_1881 VALUES
+  2  (1005, 'Satyajit Ray', 'Penguin', 'Taranath Tantrik', 500, 780, TO_DATE('03-MAY-2005', 'DD-MON-YYYY'), 21051880, TO_DATE('16-AUG-2022', 'DD-MON-YYYY'), TO_DATE('20-SEP-2023', 'DD-MON-YYYY'));
+
+1 row created.
+
+SQL> select * from Library_1881;
+
+   BOOK_NO BOOK_AUTHOR                                        BOOK_PUBLI                                         BOOK_NAME                                           BOOK_PAGE BOOK_PRICE PURCHASE_       ROLL BOOK_ISSU BOOK_RETU                                                                                                                                                                              
+---------- -------------------------------------------------- -------------------------------------------------- -------------------------------------------------- ---------- ---------- --------- ---------- --------- ---------                                                                                                                                                                              
+      1001 J.K. Rowling                                       Oxford                                             Harry Potter                                              500       1000 20-OCT-10   21051800 14-FEB-23                                                                                                                                                                                        
+      1002 Dan Brown                                          Hello                                              Solomons Curse                                            600       1500 01-JAN-20   21051806 01-JAN-23 23-FEB-23                                                                                                                                                                              
+      1003 Rick Riordan                                       Penguin                                            Lightning Thief                                           350        300 20-OCT-10   21051881 29-DEC-22 06-JAN-23                                                                                                                                                                              
+      1004 Satyajit Ray                                       Penguin                                            Feluda                                                    350        300 03-MAY-05   21051881 29-DEC-22 06-JAN-23                                                                                                                                                                              
+      1005 Satyajit Ray                                       Penguin                                            Taranath Tantrik                                          500        780 03-MAY-05   21051880 16-AUG-22 20-SEP-23                                                                                                                                                                              
+
+SQL> update Library_1881 set Book_Author VARCHAR2(20);
+update Library_1881 set Book_Author VARCHAR2(20)
+                                    *
+ERROR at line 1:
+ORA-00927: missing equal sign 
+
+
+SQL> alter table Library_1881 modify Book_Author VARCHAR2(20);
+
+Table altered.
+
+SQL> alter table Library_1881 modify Book_Publi VARCHAR2(20);
+
+Table altered.
+
+SQL> alter table Library_1881 modify Book_Name VARCHAR2(20);
+
+Table altered.
+
+SQL> select * from Library_1881;
+
+   BOOK_NO BOOK_AUTHOR          BOOK_PUBLI           BOOK_NAME             BOOK_PAGE BOOK_PRICE PURCHASE_       ROLL BOOK_ISSU BOOK_RETU                                                                                                                                                                                                                                                                        
+---------- -------------------- -------------------- -------------------- ---------- ---------- --------- ---------- --------- ---------                                                                                                                                                                                                                                                                        
+      1001 J.K. Rowling         Oxford               Harry Potter                500       1000 20-OCT-10   21051800 14-FEB-23                                                                                                                                                                                                                                                                                  
+      1002 Dan Brown            Hello                Solomons Curse              600       1500 01-JAN-20   21051806 01-JAN-23 23-FEB-23                                                                                                                                                                                                                                                                        
+      1003 Rick Riordan         Penguin              Lightning Thief             350        300 20-OCT-10   21051881 29-DEC-22 06-JAN-23                                                                                                                                                                                                                                                                        
+      1004 Satyajit Ray         Penguin              Feluda                      350        300 03-MAY-05   21051881 29-DEC-22 06-JAN-23                                                                                                                                                                                                                                                                        
+      1005 Satyajit Ray         Penguin              Taranath Tantrik            500        780 03-MAY-05   21051880 16-AUG-22 20-SEP-23                                                                                                                                                                                                                                                                        
+
+SQL> alter table Library_1881 modify Book_Publi VARCHAR2(10);
+
+Table altered.
+
+SQL> select * from Library_1881;
+
+   BOOK_NO BOOK_AUTHOR          BOOK_PUBLI BOOK_NAME             BOOK_PAGE BOOK_PRICE PURCHASE_       ROLL BOOK_ISSU BOOK_RETU                                                                                                                                                                                                                                                                                  
+---------- -------------------- ---------- -------------------- ---------- ---------- --------- ---------- --------- ---------                                                                                                                                                                                                                                                                                  
+      1001 J.K. Rowling         Oxford     Harry Potter                500       1000 20-OCT-10   21051800 14-FEB-23                                                                                                                                                                                                                                                                                            
+      1002 Dan Brown            Hello      Solomons Curse              600       1500 01-JAN-20   21051806 01-JAN-23 23-FEB-23                                                                                                                                                                                                                                                                                  
+      1003 Rick Riordan         Penguin    Lightning Thief             350        300 20-OCT-10   21051881 29-DEC-22 06-JAN-23                                                                                                                                                                                                                                                                                  
+      1004 Satyajit Ray         Penguin    Feluda                      350        300 03-MAY-05   21051881 29-DEC-22 06-JAN-23                                                                                                                                                                                                                                                                                  
+      1005 Satyajit Ray         Penguin    Taranath Tantrik            500        780 03-MAY-05   21051880 16-AUG-22 20-SEP-23                                                                                                                                                                                                                                                                                  
+
+SQL> select * from Student_1881;
+
+      ROLL NAME                 GENDER DOB       BOOK_ISSU BOOK_RETU                                                                                                                                                                                                                                                                                                                                            
+---------- -------------------- ------ --------- --------- ---------                                                                                                                                                                                                                                                                                                                                            
+  21051800 Archisman            M      13-MAY-04 14-FEB-23                                                                                                                                                                                                                                                                                                                                                      
+  21051806 B.Vinay              M      11-NOV-03 01-JAN-23 23-FEB-23                                                                                                                                                                                                                                                                                                                                            
+  21051877 Alok                 M      19-MAR-03                                                                                                                                                                                                                                                                                                                                                                
+  21051880 Anirban              M      15-OCT-02 16-AUG-22 20-SEP-22                                                                                                                                                                                                                                                                                                                                            
+  21051881 Aritra               M      23-JAN-03 29-DEC-22 06-JAN-23                                                                                                                                                                                                                                                                                                                                            
+
+SQL> ALTER TABLE Student_1881 MODIFY Name VARCHAR2(20) NOT NULL;
+ALTER TABLE Student_1881 MODIFY Name VARCHAR2(20) NOT NULL
+                                *
+ERROR at line 1:
+ORA-01442: column to be modified to NOT NULL is already NOT NULL 
+
+
+SQL> ALTER TABLE Library_1881 MODIFY Book_Name VARCHAR2(20) NOT NULL;
+
+Table altered.
+
+SQL> ALTER TABLE Student_1881 ADD CONSTRAINT C1 CHECK(DOB <> SYSDATE);
+ALTER TABLE Student_1881 ADD CONSTRAINT C1 CHECK(DOB <> SYSDATE)
+                                                        *
+ERROR at line 1:
+ORA-02436: date or system variable wrongly specified in CHECK constraint 
+
+
+SQL> ALTER TABLE Student_1881 ADD CONSTRAINT check_date CHECK(DOB <> TRUNC(SYSDATE));
+ALTER TABLE Student_1881 ADD CONSTRAINT check_date CHECK(DOB <> TRUNC(SYSDATE))
+                                                                      *
+ERROR at line 1:
+ORA-02436: date or system variable wrongly specified in CHECK constraint 
+
+
+SQL> ALTER TABLE Student ADD Dummy DATE DEFAULT SYSDATE;
+ALTER TABLE Student ADD Dummy DATE DEFAULT SYSDATE
+*
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> ALTER TABLE Student_1881 ADD Dummy DATE DEFAULT SYSDATE;
+
+Table altered.
+
+SQL> select * from student_1881;
+
+      ROLL NAME                 GENDER DOB       BOOK_ISSU BOOK_RETU DUMMY                                                                                                                                                                                                                                                                                                                                      
+---------- -------------------- ------ --------- --------- --------- ---------                                                                                                                                                                                                                                                                                                                                  
+  21051800 Archisman            M      13-MAY-04 14-FEB-23           23-FEB-23                                                                                                                                                                                                                                                                                                                                  
+  21051806 B.Vinay              M      11-NOV-03 01-JAN-23 23-FEB-23 23-FEB-23                                                                                                                                                                                                                                                                                                                                  
+  21051877 Alok                 M      19-MAR-03                     23-FEB-23                                                                                                                                                                                                                                                                                                                                  
+  21051880 Anirban              M      15-OCT-02 16-AUG-22 20-SEP-22 23-FEB-23                                                                                                                                                                                                                                                                                                                                  
+  21051881 Aritra               M      23-JAN-03 29-DEC-22 06-JAN-23 23-FEB-23                                                                                                                                                                                                                                                                                                                                  
+
+SQL> ALTER TABLE Student_1881 ADD CONSTRAINT check_date CHECK(DOB <> DUMMY);
+
+Table altered.
+
+SQL> ALTER TABLE Library_1881 ADD CONSTRAINT check_pg_no CHECK(Book_Page > 56);
+
+Table altered.
+
+SQL> ALTER TABLE Library_1881 ADD CONSTRAINT check_purchase_date CHECK(Purchase_Date < Book_Return_Date);
+
+Table altered.
+
+SQL> ALTER TABLE Library_1881 ADD CONSTRAINT check_purchase_date CHECK(Book_Issue_Date < Book_Return_Date);
+ALTER TABLE Library_1881 ADD CONSTRAINT check_purchase_date CHECK(Book_Issue_Date < Book_Return_Date)
+                                        *
+ERROR at line 1:
+ORA-02264: name already used by an existing constraint 
+
+
+SQL> ALTER TABLE Library_1881 ADD CONSTRAINT check_issue_date CHECK(Book_Issue_Date < Book_Return_Date);
+
+Table altered.
+
+SQL> ALTER TABLE Student_1881 ADD CONSTRAINT check_gender CHECK(Gender = 'M' OR Gender = 'F');
+
+Table altered.
+
+SQL> select * from Student_1881;
+
+      ROLL NAME                 GENDER DOB       BOOK_ISSU BOOK_RETU DUMMY                                                                                                                                                                                                                                                                                                                                      
+---------- -------------------- ------ --------- --------- --------- ---------                                                                                                                                                                                                                                                                                                                                  
+  21051800 Archisman            M      13-MAY-04 14-FEB-23           23-FEB-23                                                                                                                                                                                                                                                                                                                                  
+  21051806 B.Vinay              M      11-NOV-03 01-JAN-23 23-FEB-23 23-FEB-23                                                                                                                                                                                                                                                                                                                                  
+  21051877 Alok                 M      19-MAR-03                     23-FEB-23                                                                                                                                                                                                                                                                                                                                  
+  21051880 Anirban              M      15-OCT-02 16-AUG-22 20-SEP-22 23-FEB-23                                                                                                                                                                                                                                                                                                                                  
+  21051881 Aritra               M      23-JAN-03 29-DEC-22 06-JAN-23 23-FEB-23                                                                                                                                                                                                                                                                                                                                  
+
+SQL> select * from Library_1881;
+
+   BOOK_NO BOOK_AUTHOR          BOOK_PUBLI BOOK_NAME             BOOK_PAGE BOOK_PRICE PURCHASE_       ROLL BOOK_ISSU BOOK_RETU                                                                                                                                                                                                                                                                                  
+---------- -------------------- ---------- -------------------- ---------- ---------- --------- ---------- --------- ---------                                                                                                                                                                                                                                                                                  
+      1001 J.K. Rowling         Oxford     Harry Potter                500       1000 20-OCT-10   21051800 14-FEB-23                                                                                                                                                                                                                                                                                            
+      1002 Dan Brown            Hello      Solomons Curse              600       1500 01-JAN-20   21051806 01-JAN-23 23-FEB-23                                                                                                                                                                                                                                                                                  
+      1003 Rick Riordan         Penguin    Lightning Thief             350        300 20-OCT-10   21051881 29-DEC-22 06-JAN-23                                                                                                                                                                                                                                                                                  
+      1004 Satyajit Ray         Penguin    Feluda                      350        300 03-MAY-05   21051881 29-DEC-22 06-JAN-23                                                                                                                                                                                                                                                                                  
+      1005 Satyajit Ray         Penguin    Taranath Tantrik            500        780 03-MAY-05   21051880 16-AUG-22 20-SEP-23                                                                                                                                                                                                                                                                                  
+
+SQL> spool end

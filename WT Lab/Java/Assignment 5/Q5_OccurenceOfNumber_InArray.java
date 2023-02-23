@@ -2,39 +2,35 @@
 
 import java.util.Scanner;
 
-class Q5_OccurenceOfNumber_InArray {
-	public static void main(String[] args) {
+public class Q5_OccurenceOfNumber_InArray {  
+    public static void main(String[] args) {  
 		Scanner sc = new Scanner(System.in);
 		
 		System.out.print("Enter size of list: ");
 		int size = sc.nextInt();
-		int[] list = new int[size];
+		int[] arr = new int[size];
 		
 		System.out.println("Enter " + size + " integers: ");
 		for (int i=0; i<size; i++) 
-			list[i] = sc.nextInt();
-		
-		numOfOccurences(list, size);
-		sc.close();
-	}
-	
-	static void numOfOccurences(int[] arr, int n) {
-		int CHECKED = -999999;
-		int count = 0;
-		
-		for (int i=0; i<n; i++) {
-			if (arr[i] != CHECKED) {
-				int temp = arr[i];
-				for (int j=i; j<n; j++) {
-					if (arr[j] == arr[i]) {
-						count++;
-						arr[j] = CHECKED;
-						System.out.println(arr[i] + " " + count);
-					}
-				}
-				System.out.println("Element: " + temp + ", Occurence: " + count);
-				count = 0;
-			}
-		}
-	}
-}
+			arr[i] = sc.nextInt();
+
+        int [] freq = new int [size];  
+        int checked = -1;  
+        for(int i = 0; i < size; i++){  
+            int count = 1;  
+            for(int j = i+1; j < size; j++){  
+                if(arr[i] == arr[j]){  
+                    count++;  
+                    freq[j] = checked;  
+                }  
+            }  
+            if(freq[i] != checked)  
+                freq[i] = count;  
+        }  
+  
+        System.out.println("Element | Frequency");  
+        for(int i = 0; i < freq.length; i++){  
+            if(freq[i] != checked)  
+                System.out.println("    " + arr[i] + "    |    " + freq[i]);  
+        }   
+    }}  
