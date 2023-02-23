@@ -3,7 +3,6 @@
 
 class Q2_EvenOddCounter_CommandLine {
 	public static void main(String[] args) {
-		//System.out.println("Enter 10 integers: ");
 		int countEven = 0;
 		int countOdd = 0;
 		
