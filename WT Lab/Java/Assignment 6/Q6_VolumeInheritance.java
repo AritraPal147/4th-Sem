@@ -32,7 +32,7 @@ class Shape3D extends Shape2D {
     }
 }
 
-public class Inheritance {
+public class Q6_VolumeInheritance {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
