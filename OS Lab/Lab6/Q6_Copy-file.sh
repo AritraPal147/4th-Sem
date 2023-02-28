@@ -1,7 +1,7 @@
-# 4) WASS to copy a file from one directory to another.
+# 6) WASS to copy a file from one directory to another.
 
 cd 21051881
-echo "Enter name of file to be moved:"
+echo "Enter name of file to be copied:"
 read filename
 cp $filename ..
-echo $filename moved to parent directory
+echo $filename copied to parent directory

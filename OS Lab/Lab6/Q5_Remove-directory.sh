@@ -2,5 +2,6 @@
 
 echo "Enter name of directory to be removed:"
 read dirname
-rmdir $dirname
+rm -r $dirname
+# Use rmdir $dirname for empty directory
 echo $dirname removed successfully.

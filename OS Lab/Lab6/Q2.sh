@@ -1,8 +1,8 @@
 # 2) WASS to create a directory inside the current directory.
 #    Create a file inside it, store data in it and display it on screen.
 
-mkdir 21051881
-cd 21051881
+mkdir 2105188
+cd 2105188
 echo "Enter filename to be created: "
 read filename
 
