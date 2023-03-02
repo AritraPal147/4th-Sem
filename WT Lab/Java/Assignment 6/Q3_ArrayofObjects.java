@@ -50,7 +50,7 @@ public class Q3_ArrayofObjects {
 		}
 		
 		double minCgpa = students[0].getCgpa();
-		String minCgpaName = "";
+		String minCgpaName = students[0].getName();
 		for (int i=0; i<n; i++) {
 			if (students[i].getCgpa() < minCgpa) {
 				minCgpa = students[i].getCgpa();

@@ -27,7 +27,7 @@ class Number {
 			if (array[i] > array[maxIndex]) 
 				maxIndex = i;
 			if (array[i] < array[minIndex])
-				maxIndex = i;
+				minIndex = i;
 		}
 		
 		int temp = array[minIndex];

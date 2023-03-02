@@ -1,5 +1,5 @@
 /* 
-3) A plastic manufacturer sells plastic in different shapes like 2D sheet
+6) A plastic manufacturer sells plastic in different shapes like 2D sheet
 and 3D box. The cost of sheet is Rs 40/ per square ft. and the cost of
 box is Rs 60/ per cubic ft. Implement it in Java to calculate the cost
 of plastic as per the dimensions given by the user where 3D inherits from 2D.
@@ -8,7 +8,7 @@ of plastic as per the dimensions given by the user where 3D inherits from 2D.
 import java.util.Scanner;
 
 class Shape2D {
-    double len, bre, area;
+    double area;
 
     Shape2D (double len, double bre) {
         this.area = len * bre;
@@ -36,7 +36,7 @@ public class Q6_VolumeInheritance {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter lenth of 2D shape: ");
+        System.out.print("Enter length of 2D shape: ");
         double len = scanner.nextDouble();
         System.out.print("Enter breadth of 2D shape: ");
         double bre = scanner.nextDouble();
