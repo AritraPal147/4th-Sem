@@ -1,0 +1,513 @@
+SQL> CREATE TABLE Student(
+  2  Student_No VARCHAR2(3) PRIMARY KEY,
+  3  Student_Name VARCHAR2(10),
+  4  Student_DOB DATE,
+  5  Student_DOJ DATE);
+
+Table created.
+
+SQL> CREATE TABLE Project(
+  2  Prj_No VARCHAR2(3) PRIMARY KEY,
+  3  Prj_Name VARCHAR2(15),
+  4  Prj_Dur NUMBER(2),
+  5  Prj_Platform VARCHAR2(10));
+
+Table created.
+
+SQL> CREATE TABLE Student_Project(
+  2  Student_No VARCHAR2(3) REFERENCES Student(Student_No),
+  3  Prj_No VARCHAR2(3) REFERENCES Project(Prj_No),
+  4  Designation VARCHAR2(10),
+  5  CONSTRAINT p_key PRIMARY KEY(Student_No, Prj_No, Designation));
+
+Table created.
+
+SQL> desc Student;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENT_NO                                NOT NULL VARCHAR2(3)
+ STUDENT_NAME                                       VARCHAR2(10)
+ STUDENT_DOB                                        DATE
+ STUDENT_DOJ                                        DATE
+
+SQL> INSERT INTO Student VALUES('ST1', 'Krunal', TO_DATE('15-Aug-82', 'DD-MON-YY'), TO_DATE('10-Jan-03', 'DD-MON-YY'));
+
+1 row created.
+
+SQL> INSERT INTO Student VALUES('ST2', 'Bhavesh', TO_DATE('20-Aug-83', 'DD-MON-YY'), TO_DATE('10-Jan-03', 'DD-MON-YY'));
+
+1 row created.
+
+SQL> INSERT INTO Student VALUES('ST3', 'Darshan', TO_DATE('15-Mar-83', 'DD-MON-YY'), TO_DATE('12-Feb-03', 'DD-MON-YY'));
+
+1 row created.
+
+SQL> INSERT INTO Student VALUES('ST4', 'Dhaval', TO_DATE('11-May-82', 'DD-MON-YY'), TO_DATE('11-Mar-03', 'DD-MON-YY'));
+
+1 row created.
+
+SQL> INSERT INTO Student VALUES('ST5', 'Bibin', TO_DATE('23-May-83', 'DD-MON-YY'), TO_DATE('12-Mar-03', 'DD-MON-YY'));
+
+1 row created.
+
+SQL> INSERT INTO Student VALUES('ST6', 'Samir', TO_DATE('04-Sep-82', 'DD-MON-YY'), TO_DATE('12-Apr-03', 'DD-MON-YY'));
+
+1 row created.
+
+SQL> INSERT INTO Student VALUES('ST7', 'Chirag', TO_DATE('04-Jun-82', 'DD-MON-YY'), TO_DATE('12-Feb-03', 'DD-MON-YY'));
+
+1 row created.
+
+SQL> select * from Student;
+
+STU STUDENT_NA STUDENT_D STUDENT_D                                              
+--- ---------- --------- ---------                                              
+ST1 Krunal     15-AUG-82 10-JAN-03                                              
+ST2 Bhavesh    20-AUG-83 10-JAN-03                                              
+ST3 Darshan    15-MAR-83 12-FEB-03                                              
+ST4 Dhaval     11-MAY-82 11-MAR-03                                              
+ST5 Bibin      23-MAY-83 12-MAR-03                                              
+ST6 Samir      04-SEP-82 12-APR-03                                              
+ST7 Chirag     04-JUN-82 12-FEB-03                                              
+
+7 rows selected.
+
+SQL> desc Project;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ PRJ_NO                                    NOT NULL VARCHAR2(3)
+ PRJ_NAME                                           VARCHAR2(15)
+ PRJ_DUR                                            NUMBER(2)
+ PRJ_PLATFORM                                       VARCHAR2(10)
+
+SQL> INSERT INTO Project VALUES('P01', 'XYZ', 6, 'VB');
+
+1 row created.
+
+SQL> INSERT INTO Project VALUES('P02', 'ABC', 5, 'JAVA');
+
+1 row created.
+
+SQL> INSERT INTO Project VALUES('P03', 'LMN', 6, 'C++');
+
+1 row created.
+
+SQL> SELECT * FROM Project;
+
+PRJ PRJ_NAME           PRJ_DUR PRJ_PLATFO                                       
+--- --------------- ---------- ----------                                       
+P01 XYZ                      6 VB                                               
+P02 ABC                      5 JAVA                                             
+P03 LMN                      6 C++                                              
+
+SQL> desc Student_Project;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENT_NO                                NOT NULL VARCHAR2(3)
+ PRJ_NO                                    NOT NULL VARCHAR2(3)
+ DESIGNATION                               NOT NULL VARCHAR2(10)
+
+SQL> INSERT INTO Student_Project VALUES('ST1', 'P01', 'Programmer');
+
+1 row created.
+
+SQL> INSERT INTO Student_Project VALUES('ST2', 'P01', 'Manager');
+
+1 row created.
+
+SQL> INSERT INTO Student_Project VALUES('ST3', 'P02', 'Manager');
+
+1 row created.
+
+SQL> INSERT INTO Student_Project VALUES('ST4', 'P02', 'Manager');
+
+1 row created.
+
+SQL> INSERT INTO Student_Project VALUES('ST5', 'P03', 'Programmer');
+
+1 row created.
+
+SQL> INSERT INTO Student_Project VALUES('ST6', 'P03', 'Manager');
+
+1 row created.
+
+SQL> INSERT INTO Student_Project VALUES('ST1', 'P03', 'Programmer');
+
+1 row created.
+
+SQL> INSERT INTO Student_Project VALUES('ST1', 'P01', 'Analyst');
+
+1 row created.
+
+SQL> INSERT INTO Student_Project VALUES('ST3', 'P02', 'Analyst');
+
+1 row created.
+
+SQL> select * from Student_Project;
+
+STU PRJ DESIGNATIO                                                              
+--- --- ----------                                                              
+ST1 P01 Programmer                                                              
+ST2 P01 Manager                                                                 
+ST3 P02 Manager                                                                 
+ST4 P02 Manager                                                                 
+ST5 P03 Programmer                                                              
+ST6 P03 Manager                                                                 
+ST1 P03 Programmer                                                              
+ST1 P01 Analyst                                                                 
+ST3 P02 Analyst                                                                 
+
+9 rows selected.
+
+SQL> select * from Student;
+
+STU STUDENT_NA STUDENT_D STUDENT_D                                              
+--- ---------- --------- ---------                                              
+ST1 Krunal     15-AUG-82 10-JAN-03                                              
+ST2 Bhavesh    20-AUG-83 10-JAN-03                                              
+ST3 Darshan    15-MAR-83 12-FEB-03                                              
+ST4 Dhaval     11-MAY-82 11-MAR-03                                              
+ST5 Bibin      23-MAY-83 12-MAR-03                                              
+ST6 Samir      04-SEP-82 12-APR-03                                              
+ST7 Chirag     04-JUN-82 12-FEB-03                                              
+
+7 rows selected.
+
+SQL> select * from project;
+
+PRJ PRJ_NAME           PRJ_DUR PRJ_PLATFO                                       
+--- --------------- ---------- ----------                                       
+P01 XYZ                      6 VB                                               
+P02 ABC                      5 JAVA                                             
+P03 LMN                      6 C++                                              
+
+SQL> SELECT s.Student_No, s.Student_Name, (TO_DATE('02-Mar-2023', 'DD-MON-YYYY') - s.Student_DOB)
+  2  from Student s
+  3  join Student_Project sp on s.Student_No = sp.Student_no
+  4  join Project p on sp.Prj_No = p.Prj_No
+  5  where p.Prj_Platfrom = 'Java';
+where p.Prj_Platfrom = 'Java'
+      *
+ERROR at line 5:
+ORA-00904: "P"."PRJ_PLATFROM": invalid identifier 
+
+
+SQL> SELECT s.Student_No, s.Student_Name, (TO_DATE('02-Mar-2023', 'DD-MON-YYYY') - s.Student_DOB)
+  2  from Student as s
+  3  join Student_Project as sp on s.Student_No = sp.Student_no
+  4  join Project as p on sp.Prj_No = p.Prj_No
+  5  where p.Prj_Platfrom = 'Java';
+from Student as s
+             *
+ERROR at line 2:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> SELECT s.STUDENT_NO, s.STUDENT_NAME, EXTRACT(YEAR FROM sysdate) - EXTRACT(YEAR FROM s.STUDENT_DOB) AS AGE
+  2  FROM STUDENT s
+  3  JOIN STUDENT_PROJECT sp ON s.STUDENT_NO = sp.STUDENT_NO
+  4  JOIN PROJECT p ON sp.PRJ_NO = p.PRJ_NO
+  5  WHERE p.PRJ_PLATFORM = 'Java';
+
+no rows selected
+
+SQL> SELECT s.STUDENT_NO, s.STUDENT_NAME, EXTRACT(YEAR FROM sysdate) - EXTRACT(YEAR FROM s.STUDENT_DOB) AS AGE
+  2  FROM STUDENT s
+  3  JOIN STUDENT_PROJECT sp ON s.STUDENT_NO = sp.STUDENT_NO
+  4  JOIN PROJECT p ON sp.PRJ_NO = p.PRJ_NO
+  5  WHERE p.PRJ_PLATFORM = 'Java';
+
+no rows selected
+
+SQL> SELECT s.STUDENT_NO, s.STUDENT_NAME, EXTRACT(YEAR FROM sysdate) - EXTRACT(YEAR FROM s.STUDENT_DOB) AS AGE
+  2  FROM STUDENT s
+  3  JOIN STUDENT_PROJECT sp ON s.STUDENT_NO = sp.STUDENT_NO
+  4  JOIN PROJECT p ON sp.PRJ_NO = p.PRJ_NO
+  5  WHERE p.PRJ_PLATFORM = 'JAVA';
+
+STU STUDENT_NA        AGE                                                       
+--- ---------- ----------                                                       
+ST3 Darshan           -60                                                       
+ST4 Dhaval            -59                                                       
+ST3 Darshan           -60                                                       
+
+SQL> SELECT s.Student_No, s.Student_Name, EXTRACT(YEAR FROM s.Student_DOB) - EXTRACT(YEAR FROM SYSDATE) AS Age
+  2  FROM Student s
+  3  JOIN Student_Project sp ON s.Student_No = sp.Student_No
+  4  JOIN Project p ON sp.Prj_No = p.Prj_No
+  5  WHERE p.Prj_Platform = 'JAVA';
+
+STU STUDENT_NA        AGE                                                       
+--- ---------- ----------                                                       
+ST3 Darshan            60                                                       
+ST4 Dhaval             59                                                       
+ST3 Darshan            60                                                       
+
+SQL> SELECT *
+  2  FROM Student s
+  3  JOIN Student_Project sp ON s.Student_No = sp.Student_No
+  4  WHERE sp.Designation = 'Programmer';
+
+STU STUDENT_NA STUDENT_D STUDENT_D STU PRJ DESIGNATIO                           
+--- ---------- --------- --------- --- --- ----------                           
+ST1 Krunal     15-AUG-82 10-JAN-03 ST1 P03 Programmer                           
+ST1 Krunal     15-AUG-82 10-JAN-03 ST1 P01 Programmer                           
+ST5 Bibin      23-MAY-83 12-MAR-03 ST5 P03 Programmer                           
+
+SQL> SELECT p.Prj_No, p.Prj_Name, COUNT(sp.Student_No) as Num_Of_Students
+  2  from Project p
+  3  JOIN Student_Project sp ON p.Prj_No = sp.Prj_No
+  4  GROUP BY p.Prj_No, p.Prj_Name
+  5  HAVING COUNT(sp.Student_No) > 1;
+
+PRJ PRJ_NAME        NUM_OF_STUDENTS                                             
+--- --------------- ---------------                                             
+P02 ABC                           3                                             
+P01 XYZ                           3                                             
+P03 LMN                           3                                             
+
+SQL> SELECT p.Prj_No, p.Prj_Name, COUNT(sp.Student_No) as Num_Of_Students
+  2  from Project p
+  3  JOIN Student_Project sp ON p.Prj_No = sp.Prj_No
+  4  HAVING COUNT(sp.Student_No) > 1;
+SELECT p.Prj_No, p.Prj_Name, COUNT(sp.Student_No) as Num_Of_Students
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function 
+
+
+SQL> SELECT p.Prj_No, p.Prj_Name, COUNT(sp.Student_No) as Num_Of_Students
+  2  FROM Project p
+  3  JOIN Student_Project sp ON p.Prj_No = sp.Prj_No
+  4  GROUP BY p.Prj_No, p.Prj_Name
+  5  HAVING COUNT(sp.Student_No) > 1;
+
+PRJ PRJ_NAME        NUM_OF_STUDENTS                                             
+--- --------------- ---------------                                             
+P02 ABC                           3                                             
+P01 XYZ                           3                                             
+P03 LMN                           3                                             
+
+SQL> SELECT *, COUNT(sp.Student_No) as Num_Of_Students
+  2  FROM Project p
+  3  JOIN Student_Project sp ON p.Prj_No = sp.Prj_No
+  4  GROUP BY p.Prj_No, p.Prj_Name
+  5  HAVING COUNT(sp.Student_No) > 1;
+SELECT *, COUNT(sp.Student_No) as Num_Of_Students
+        *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT *
+  2  FROM Project p
+  3  JOIN Student_Project sp ON p.Prj_No = sp.Prj_No
+  4  GROUP BY p.Prj_No, p.Prj_Name
+  5  HAVING COUNT(sp.Student_No) > 1;
+SELECT *
+       *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> SELECT p.Prj_No, p.Prj_Name, p.Prj_Dur, p.Prj_Platform, COUNT(sp.Student_No) as Num_Of_Students
+  2  FROM Project p
+  3  JOIN Student_Project sp ON p.Prj_No = sp.Prj_No
+  4  GROUP BY p.Prj_No, p.Prj_Name
+  5  HAVING COUNT(sp.Student_No) > 1;
+SELECT p.Prj_No, p.Prj_Name, p.Prj_Dur, p.Prj_Platform, COUNT(sp.Student_No) as Num_Of_Students
+                             *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> SELECT *
+  2  FROM Project p
+  3  JOIN Student_Project sp ON p.Prj_No = sp.Prj_No
+  4  GROUP BY *
+  5  HAVING COUNT(sp.Student_No) > 1;
+GROUP BY *
+         *
+ERROR at line 4:
+ORA-00936: missing expression 
+
+
+SQL> SELECT p.Prj_No, p.Prj_Name, p.Prj_Dur, p.Prj_Platform, COUNT(sp.Student_No) as Num_Of_Students
+  2  FROM Project p
+  3  JOIN Student_Project sp ON p.Prj_No = sp.Prj_No
+  4  GROUP BY p.Prj_No, p.Prj_Name, p.Prj_Dur, p.Prj_Platform
+  5  HAVING COUNT(sp.Student_No) > 1;
+
+PRJ PRJ_NAME           PRJ_DUR PRJ_PLATFO NUM_OF_STUDENTS                       
+--- --------------- ---------- ---------- ---------------                       
+P01 XYZ                      6 VB                       3                       
+P03 LMN                      6 C++                      3                       
+P02 ABC                      5 JAVA                     3                       
+
+SQL> SELECT *
+  2  FROM Student
+  3  WHERE MIN(EXTRACT(YEAR FROM s.Student_DOB) - EXTRACT(YEAR FROM SYSDATE));
+WHERE MIN(EXTRACT(YEAR FROM s.Student_DOB) - EXTRACT(YEAR FROM SYSDATE))
+      *
+ERROR at line 3:
+ORA-00934: group function is not allowed here 
+
+
+SQL> SELECT *
+  2  FROM Student s
+  3  WHERE (EXTRACT(YEAR FROM s.Student_DOB) - EXTRACT(YEAR FROM SYSDATE)) = (SELECT MIN( EXTRACT(YEAR FROM s.Student_DOB) - EXTRACT(YEAR FROM SYSDATE)) FROM STUDENT);
+
+STU STUDENT_NA STUDENT_D STUDENT_D                                              
+--- ---------- --------- ---------                                              
+ST1 Krunal     15-AUG-82 10-JAN-03                                              
+ST2 Bhavesh    20-AUG-83 10-JAN-03                                              
+ST3 Darshan    15-MAR-83 12-FEB-03                                              
+ST4 Dhaval     11-MAY-82 11-MAR-03                                              
+ST5 Bibin      23-MAY-83 12-MAR-03                                              
+ST6 Samir      04-SEP-82 12-APR-03                                              
+ST7 Chirag     04-JUN-82 12-FEB-03                                              
+
+7 rows selected.
+
+SQL> SELECT COUNT(*) FROM Student_Project
+  2  WHERE Prj='P01';
+WHERE Prj='P01'
+      *
+ERROR at line 2:
+ORA-00904: "PRJ": invalid identifier 
+
+
+SQL> SELECT COUNT(*) FROM Student_Project
+  2  WHERE Prj_No='P01';
+
+  COUNT(*)                                                                      
+----------                                                                      
+         3                                                                      
+
+SQL> SELECT COUNT(*) as Num_Of_Students FROM Student_Project
+  2  WHERE Prj_No='P01';
+
+NUM_OF_STUDENTS                                                                 
+---------------                                                                 
+              3                                                                 
+
+SQL> SELECT *
+  2  FROM Student
+  3  WHERE To_Char(Student_DOB, 'YY') > '82' AND To_Char(Student_DOB, 'YY') < '83';
+
+no rows selected
+
+SQL> WHERE To_Char(Student_DOB, 'YY') > 82 AND To_Char(Student_DOB, 'YY') < 83;
+SP2-0734: unknown command beginning "WHERE To_C..." - rest of line ignored.
+SQL> SELECT *
+  2  FROM Student
+  3  WHERE EXTRACT(YEAR FROM Student_DOB) >= 1982 AND EXTRACT(YEAR FROM Student_DOB) =< 1983;
+WHERE EXTRACT(YEAR FROM Student_DOB) >= 1982 AND EXTRACT(YEAR FROM Student_DOB) =< 1983
+                                                                                 *
+ERROR at line 3:
+ORA-00936: missing expression 
+
+
+SQL> SELECT *
+  2  FROM Student
+  3  WHERE To_Char(Student_DOB, 'YY') >= '82' AND To_Char(Student_DOB, 'YY') =< '83';
+WHERE To_Char(Student_DOB, 'YY') >= '82' AND To_Char(Student_DOB, 'YY') =< '83'
+                                                                         *
+ERROR at line 3:
+ORA-00936: missing expression 
+
+
+SQL> SELECT *
+  2  FROM Student
+  3  WHERE Student_DOB between TO_DATE('01/01/1982', 'DD/MM/YYYY') AND TO_DATE('31/12/1983', 'DD/MM/YYYY');
+
+no rows selected
+
+SQL> SELECT *
+  2  FROM Student
+  3  WHERE Student_DOJ between TO_DATE('01/01/1982', 'DD/MM/YYYY') AND TO_DATE('31/12/1983', 'DD/MM/YYYY');
+
+no rows selected
+
+SQL> SELECT *
+  2  FROM Student s
+  3  WHERE (EXTRACT(YEAR FROM s.Student_DOB) - EXTRACT(YEAR FROM SYSDATE)) = (SELECT MIN(EXTRACT(YEAR FROM Student_DOB) - EXTRACT(YEAR FROM SYSDATE)) FROM STUDENT);
+
+STU STUDENT_NA STUDENT_D STUDENT_D                                              
+--- ---------- --------- ---------                                              
+ST1 Krunal     15-AUG-82 10-JAN-03                                              
+ST4 Dhaval     11-MAY-82 11-MAR-03                                              
+ST6 Samir      04-SEP-82 12-APR-03                                              
+ST7 Chirag     04-JUN-82 12-FEB-03                                              
+
+SQL> SELECT *
+  2  FROM Student s
+  3  WHERE s.Student_DOB - SYSDATE = (SELECT MIN(Student_DOB - SYSDATE) FROM STUDENT);
+
+STU STUDENT_NA STUDENT_D STUDENT_D                                              
+--- ---------- --------- ---------                                              
+ST4 Dhaval     11-MAY-82 11-MAR-03                                              
+
+SQL> SELECT COUNT(*) FROM Prj p
+  2  WHERE p.Student_No = (SELECT DISTINCT Student_No from Project);
+SELECT COUNT(*) FROM Prj p
+                     *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> SELECT COUNT(*)
+  2  FROM Student_Project p
+  3  WHERE p.Student_No = (SELECT DISTINCT Student_No from Project);
+
+  COUNT(*)                                                                      
+----------                                                                      
+         9                                                                      
+
+SQL> SELECT COUNT(*) FROM Prj p
+  2  SELECT COUNT(*);
+SELECT COUNT(*)
+*
+ERROR at line 2:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> SELECT COUNT(*)
+  2  FROM Student_Project p
+  3  WHERE p.Student_No = (SELECT DISTINCT Student_No from Project)
+  4  AND p.Project_No = 'P01';
+AND p.Project_No = 'P01'
+    *
+ERROR at line 4:
+ORA-00904: "P"."PROJECT_NO": invalid identifier 
+
+
+SQL> SELECT COUNT(*)
+  2  FROM Student_Project p
+  3  WHERE p.Student_No = (SELECT DISTINCT Student_No from Project)
+  4  AND p.Prj_No = 'P01';
+
+  COUNT(*)                                                                      
+----------                                                                      
+         3                                                                      
+
+SQL> SELECT COUNT(Distinct St_No) from Student_Project where Prj_No = 'P01';
+SELECT COUNT(Distinct St_No) from Student_Project where Prj_No = 'P01'
+                      *
+ERROR at line 1:
+ORA-00904: "ST_NO": invalid identifier 
+
+
+SQL> SELECT COUNT(Distinct Student_No) from Student_Project where Prj_No = 'P01';
+
+COUNT(DISTINCTSTUDENT_NO)                                                       
+-------------------------                                                       
+                        2                                                       
+
+SQL> SELECT COUNT(Distinct Student_No) from Student_Project where Prj_No = 'P03';
+
+COUNT(DISTINCTSTUDENT_NO)                                                       
+-------------------------                                                       
+                        3                                                       
+
+SQL> spool end
