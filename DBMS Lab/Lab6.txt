@@ -1,0 +1,392 @@
+SQL> CREATE TABLE Employee(
+  2  Emp_Id INT PRIMARY KEY,
+  3  First_Name VARCHAR(15),
+  4  Last_Name VARCHAR(15),
+  5  Hiredate DATE,
+  6  Dept_Name VARCHAR(10),
+  7  Designation VARCHAR2(10),
+  8  Qualification VARCHAR2(7),
+  9  Salary INT
+ 10  );
+
+Table created.
+
+SQL> ALTER TABLE Employee
+  2  ADD COLUMN Supervisor VARCHAR2(20);
+ADD COLUMN Supervisor VARCHAR2(20)
+    *
+ERROR at line 2:
+ORA-00904: : invalid identifier 
+
+
+SQL> ALTER TABLE Employee
+  2  ADD Supervisor VARCHAR2(20);
+
+Table altered.
+
+SQL> DESC Employee;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_ID                                    NOT NULL NUMBER(38)
+ FIRST_NAME                                         VARCHAR2(15)
+ LAST_NAME                                          VARCHAR2(15)
+ HIREDATE                                           DATE
+ DEPT_NAME                                          VARCHAR2(10)
+ DESIGNATION                                        VARCHAR2(10)
+ QUALIFICATION                                      VARCHAR2(7)
+ SALARY                                             NUMBER(38)
+ SUPERVISOR                                         VARCHAR2(20)
+
+SQL> INSERT INTO Employee VALUES(10, 'Jinku', 'Shaw', TO_DATE('23-03-2020', 'DD-MM-YYYY'), 30, 'Sales', 'MBA', 20000, 'Rajdeep');
+
+1 row created.
+
+SQL> INSERT INTO Employee VALUES(20, 'Stanley', 'Garner', TO_DATE('23-03-2020', 'DD-MM-YYYY'), 40, 'Tech', 'BTech', 30000, 'Rajdeep');
+
+1 row created.
+
+SQL> INSERT INTO Employee VALUES(433, 'Aritra', 'Pal', TO_DATE('19-05-2008', 'DD-MM-YYYY'), 20, 'Finance', 'MBA', 60000, 'Rajdeep');
+
+1 row created.
+
+SQL> INSERT INTO Employee VALUES(30, 'Anirban', 'Basak', TO_DATE('20-09-2010', 'DD-MM-YYYY'), 40, 'Tech', 'BTech', 60000, 'Rajdeep');
+
+1 row created.
+
+SQL> select * from Employee
+  2  ;
+
+    EMP_ID FIRST_NAME      LAST_NAME       HIREDATE  DEPT_NAME  DESIGNATIO      
+---------- --------------- --------------- --------- ---------- ----------      
+QUALIFI     SALARY SUPERVISOR                                                   
+------- ---------- --------------------                                         
+        10 Jinku           Shaw            23-MAR-20 30         Sales           
+MBA          20000 Rajdeep                                                      
+                                                                                
+        20 Stanley         Garner          23-MAR-20 40         Tech            
+BTech        30000 Rajdeep                                                      
+                                                                                
+       433 Aritra          Pal             19-MAY-08 20         Finance         
+MBA          60000 Rajdeep                                                      
+                                                                                
+
+    EMP_ID FIRST_NAME      LAST_NAME       HIREDATE  DEPT_NAME  DESIGNATIO      
+---------- --------------- --------------- --------- ---------- ----------      
+QUALIFI     SALARY SUPERVISOR                                                   
+------- ---------- --------------------                                         
+        30 Anirban         Basak           20-SEP-10 40         Tech            
+BTech        60000 Rajdeep                                                      
+                                                                                
+
+SQL> set linesize 400;
+SQL> select * from Employee;
+
+    EMP_ID FIRST_NAME      LAST_NAME       HIREDATE  DEPT_NAME  DESIGNATIO QUALIFI     SALARY SUPERVISOR                                                                                                                                                                                                                                                                                                        
+---------- --------------- --------------- --------- ---------- ---------- ------- ---------- --------------------                                                                                                                                                                                                                                                                                              
+        10 Jinku           Shaw            23-MAR-20 30         Sales      MBA          20000 Rajdeep                                                                                                                                                                                                                                                                                                           
+        20 Stanley         Garner          23-MAR-20 40         Tech       BTech        30000 Rajdeep                                                                                                                                                                                                                                                                                                           
+       433 Aritra          Pal             19-MAY-08 20         Finance    MBA          60000 Rajdeep                                                                                                                                                                                                                                                                                                           
+        30 Anirban         Basak           20-SEP-10 40         Tech       BTech        60000 Rajdeep                                                                                                                                                                                                                                                                                                           
+
+SQL> SELECT Dept_Name FROM Employee
+  2  WHERE First_Name LIKE 'Jinku'
+  3  AND Last_Name LIKE 'Shaw';
+
+DEPT_NAME                                                                                                                                                                                                                                                                                                                                                                                                       
+----------                                                                                                                                                                                                                                                                                                                                                                                                      
+30                                                                                                                                                                                                                                                                                                                                                                                                              
+
+SQL> SELECT First_Name | | Last_Name AS Name, Designation FROM Employee
+  2  WHERE First_Name LIKE 'Jinku'
+  3  AND Last_Name LIKE 'Shaw';
+
+NAME                           DESIGNATIO                                                                                                                                                                                                                                                                                                                                                                       
+------------------------------ ----------                                                                                                                                                                                                                                                                                                                                                                       
+JinkuShaw                      Sales                                                                                                                                                                                                                                                                                                                                                                            
+
+SQL> SELECT Supervisor
+  2  FROM Employee
+  3  WHERE Emp_Id = 433;
+
+SUPERVISOR                                                                                                                                                                                                                                                                                                                                                                                                      
+--------------------                                                                                                                                                                                                                                                                                                                                                                                            
+Rajdeep                                                                                                                                                                                                                                                                                                                                                                                                         
+
+SQL> SELECT First_Name || || Last_Name AS Name, Qualification
+  2  FROM Employee
+  3  WHERE FName=";
+ERROR:
+ORA-01756: quoted string not properly terminated 
+
+
+SQL> SELECT First_Name || || Last_Name AS Name, Qualification
+  2  FROM Employee
+  3  WHERE Qualification = (SELECT Qualification FROM Employee
+  4  			    WHERE First_Name = 'Stanley' AND Last_Name = 'Garner');
+SELECT First_Name || || Last_Name AS Name, Qualification
+                     *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> SELECT First_Name | | Last_Name AS Name, Qualification
+  2  FROM Employee
+  3  WHERE Qualification = (SELECT Qualification FROM Employee
+  4  			    WHERE First_Name = 'Stanley' AND Last_Name = 'Garner');
+
+NAME                           QUALIFI                                                                                                                                                                                                                                                                                                                                                                          
+------------------------------ -------                                                                                                                                                                                                                                                                                                                                                                          
+StanleyGarner                  BTech                                                                                                                                                                                                                                                                                                                                                                            
+AnirbanBasak                   BTech                                                                                                                                                                                                                                                                                                                                                                            
+
+SQL> SELECT First_Name || || Last_Name AS Name, Qualification
+  2  ;
+SELECT First_Name || || Last_Name AS Name, Qualification
+                     *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> SELECT Dept_Name, Count(*) AS Num_Of_Employees
+  2  FROM Employee
+  3  GROUP BY Dept_Name
+  4  HAVING COUNT(*) > (SELECT COUNT(*) FROM Employee WHERE Dept_Name='20');
+
+DEPT_NAME  NUM_OF_EMPLOYEES                                                                                                                                                                                                                                                                                                                                                                                     
+---------- ----------------                                                                                                                                                                                                                                                                                                                                                                                     
+40                        2                                                                                                                                                                                                                                                                                                                                                                                     
+
+SQL> INSERT INTO Employee VALUES(90, 'Larry', 'Houston', TO_DATE('20-09-2023', 'DD-MM-YYYY'), 30, 'Sales', 'MBA', 35000, 'Rajdeep');
+
+1 row created.
+
+SQL> SELECT Dept_Name, Count(*) AS Num_Of_Employees
+  2  FROM Employee
+  3  GROUP BY Dept_Name
+  4  HAVING COUNT(*) > (SELECT COUNT(*) FROM Employee WHERE Dept_Name='20');
+
+DEPT_NAME  NUM_OF_EMPLOYEES                                                                                                                                                                                                                                                                                                                                                                                     
+---------- ----------------                                                                                                                                                                                                                                                                                                                                                                                     
+40                        2                                                                                                                                                                                                                                                                                                                                                                                     
+30                        2                                                                                                                                                                                                                                                                                                                                                                                     
+
+SQL> SELECT *
+  2  FROM Employee
+  3  WHERE Hiredate - (SELECT Hiredate FROM Employee WHERE First_Name='Larry' AND Last_Name='Houston')>0;
+
+no rows selected
+
+SQL> SELECT *
+  2  FROM Employee
+  3  WHERE Hiredate - (SELECT Hiredate FROM Employee WHERE First_Name='Larry' AND Last_Name='Houston')<0;
+
+    EMP_ID FIRST_NAME      LAST_NAME       HIREDATE  DEPT_NAME  DESIGNATIO QUALIFI     SALARY SUPERVISOR                                                                                                                                                                                                                                                                                                        
+---------- --------------- --------------- --------- ---------- ---------- ------- ---------- --------------------                                                                                                                                                                                                                                                                                              
+        10 Jinku           Shaw            23-MAR-20 30         Sales      MBA          20000 Rajdeep                                                                                                                                                                                                                                                                                                           
+        20 Stanley         Garner          23-MAR-20 40         Tech       BTech        30000 Rajdeep                                                                                                                                                                                                                                                                                                           
+       433 Aritra          Pal             19-MAY-08 20         Finance    MBA          60000 Rajdeep                                                                                                                                                                                                                                                                                                           
+        30 Anirban         Basak           20-SEP-10 40         Tech       BTech        60000 Rajdeep                                                                                                                                                                                                                                                                                                           
+
+SQL> SELECT *
+  2  FROM Employee
+  3  WHERE Dept_Id = (SELECT Dept_Id FROM Employee WHERE Designation = 'Sales');
+WHERE Dept_Id = (SELECT Dept_Id FROM Employee WHERE Designation = 'Sales')
+      *
+ERROR at line 3:
+ORA-00904: "DEPT_ID": invalid identifier 
+
+
+SQL> SELECT *
+  2  FROM Employee
+  3  WHERE Dept_Name = (SELECT Dept_Name FROM Employee WHERE Designation = 'Sales');
+WHERE Dept_Name = (SELECT Dept_Name FROM Employee WHERE Designation = 'Sales')
+                   *
+ERROR at line 3:
+ORA-01427: single-row subquery returns more than one row 
+
+
+SQL> SELECT *
+  2  FROM Employee
+  3  GROUP BY Dept_Name
+  4  HAVING Dept_Name = (SELECT Dept_Name FROM Employee WHERE Designation = 'Sales');
+SELECT *
+       *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> SELECT *
+  2  FROM Employee
+  3  WHERE Dept_Name = (SELECT Dept_Name FROM Employee WHERE Designation = 'Sales');
+WHERE Dept_Name = (SELECT Dept_Name FROM Employee WHERE Designation = 'Sales')
+                   *
+ERROR at line 3:
+ORA-01427: single-row subquery returns more than one row 
+
+
+SQL> SELECT *
+  2  FROM Employee
+  3  WHERE Dept_Name IN (SELECT Dept_Name FROM Employee WHERE Designation = 'Sales');
+
+    EMP_ID FIRST_NAME      LAST_NAME       HIREDATE  DEPT_NAME  DESIGNATIO QUALIFI     SALARY SUPERVISOR                                                                                                                                                                                                                                                                                                        
+---------- --------------- --------------- --------- ---------- ---------- ------- ---------- --------------------                                                                                                                                                                                                                                                                                              
+        10 Jinku           Shaw            23-MAR-20 30         Sales      MBA          20000 Rajdeep                                                                                                                                                                                                                                                                                                           
+        90 Larry           Houston         20-SEP-23 30         Sales      MBA          35000 Rajdeep                                                                                                                                                                                                                                                                                                           
+
+SQL> CREATE TABLE Emp30(
+  2  Emp_ID INT PRIMARY KEY,
+  3  First_Name VARCHAR2(15),
+  4  Last_Name VARCHAR2(15),
+  5  Hiredate DATE,
+  6  
+SQL> ;
+  1  CREATE TABLE Emp30(
+  2  Emp_ID INT PRIMARY KEY,
+  3  First_Name VARCHAR2(15),
+  4  Last_Name VARCHAR2(15),
+  5* Hiredate DATE,
+SQL> CREATE TABLE Emp30(
+  2  Emp_ID INT PRIMARY KEY,
+  3  First_Name VARCHAR2(15),
+  4  Last_Name VARCHAR2(15),
+  5  Hiredate DATE,
+  6  Salary INT);
+
+Table created.
+
+SQL> INSERT INTO Emp30 (Emp_Id, First_Name, Last_Name, Hiredate, Salary)
+  2  SELECT Emp_Id, First_Name, Last_Name, Hiredate, Salary
+  3  FROM Employee
+  4  WHERE Dept_Name='30';
+
+2 rows created.
+
+SQL> SELECT * FROM Emp30;
+
+    EMP_ID FIRST_NAME      LAST_NAME       HIREDATE      SALARY                                                                                                                                                                                                                                                                                                                                                 
+---------- --------------- --------------- --------- ----------                                                                                                                                                                                                                                                                                                                                                 
+        10 Jinku           Shaw            23-MAR-20      20000                                                                                                                                                                                                                                                                                                                                                 
+        90 Larry           Houston         20-SEP-23      35000                                                                                                                                                                                                                                                                                                                                                 
+
+SQL> SELECT * FROM Employee;
+
+    EMP_ID FIRST_NAME      LAST_NAME       HIREDATE  DEPT_NAME  DESIGNATIO QUALIFI     SALARY SUPERVISOR                                                                                                                                                                                                                                                                                                        
+---------- --------------- --------------- --------- ---------- ---------- ------- ---------- --------------------                                                                                                                                                                                                                                                                                              
+        10 Jinku           Shaw            23-MAR-20 30         Sales      MBA          20000 Rajdeep                                                                                                                                                                                                                                                                                                           
+        20 Stanley         Garner          23-MAR-20 40         Tech       BTech        30000 Rajdeep                                                                                                                                                                                                                                                                                                           
+       433 Aritra          Pal             19-MAY-08 20         Finance    MBA          60000 Rajdeep                                                                                                                                                                                                                                                                                                           
+        30 Anirban         Basak           20-SEP-10 40         Tech       BTech        60000 Rajdeep                                                                                                                                                                                                                                                                                                           
+        90 Larry           Houston         20-SEP-23 30         Sales      MBA          35000 Rajdeep                                                                                                                                                                                                                                                                                                           
+
+SQL> INSERT INTO Emp30 (Emp_Id, First_Name, Last_Name, Hiredate)
+  2  SELECT Emp_Id, First_Name, Last_Name, Hiredate
+  3  FROM Employee
+  4  WHERE Dept_Name='40';
+
+2 rows created.
+
+SQL> SELECT * FROM Emp30;
+
+    EMP_ID FIRST_NAME      LAST_NAME       HIREDATE      SALARY                                                                                                                                                                                                                                                                                                                                                 
+---------- --------------- --------------- --------- ----------                                                                                                                                                                                                                                                                                                                                                 
+        10 Jinku           Shaw            23-MAR-20      20000                                                                                                                                                                                                                                                                                                                                                 
+        90 Larry           Houston         20-SEP-23      35000                                                                                                                                                                                                                                                                                                                                                 
+        20 Stanley         Garner          23-MAR-20                                                                                                                                                                                                                                                                                                                                                            
+        30 Anirban         Basak           20-SEP-10                                                                                                                                                                                                                                                                                                                                                            
+
+SQL> SELECT First_Name | | Last_Name, Dept_Name
+  2  FROM Employee
+  3  GROUP BY Dept_Name
+  4  HAVING Salary = (SELECT MIN(SALARY) FROM Employee Group by Dept_Name);
+HAVING Salary = (SELECT MIN(SALARY) FROM Employee Group by Dept_Name)
+       *
+ERROR at line 4:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> SELECT First_Name | | Last_Name, Dept_Name, Salary
+  2  HAVING Salary = (SELECT MIN(SALARY) FROM Employee Group by Dept_Name);
+HAVING Salary = (SELECT MIN(SALARY) FROM Employee Group by Dept_Name)
+*
+ERROR at line 2:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT First_Name | | Last_Name, Dept_Name, Salary
+  2  FROM Employee
+  3  GROUP BY Dept_Name
+  4  HAVING Salary = (SELECT MIN(SALARY) FROM Employee Group by Dept_Name);
+HAVING Salary = (SELECT MIN(SALARY) FROM Employee Group by Dept_Name)
+       *
+ERROR at line 4:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> ALTER TABLE Employee SET Emp_Id = 543 WHERE Emp_id = 10;
+ALTER TABLE Employee SET Emp_Id = 543 WHERE Emp_id = 10
+                         *
+ERROR at line 1:
+ORA-02000: missing UNUSED keyword 
+
+
+SQL> SELECT *
+  2  FROM Employee e1
+  3  WHERE Salary = (SELECT MIN(Salary) FROM Employee e2 WHERE e2.Dept_Name = e1.Dept_Name);
+
+    EMP_ID FIRST_NAME      LAST_NAME       HIREDATE  DEPT_NAME  DESIGNATIO QUALIFI     SALARY SUPERVISOR                                                                                                                                                                                                                                                                                                        
+---------- --------------- --------------- --------- ---------- ---------- ------- ---------- --------------------                                                                                                                                                                                                                                                                                              
+        10 Jinku           Shaw            23-MAR-20 30         Sales      MBA          20000 Rajdeep                                                                                                                                                                                                                                                                                                           
+        20 Stanley         Garner          23-MAR-20 40         Tech       BTech        30000 Rajdeep                                                                                                                                                                                                                                                                                                           
+       433 Aritra          Pal             19-MAY-08 20         Finance    MBA          60000 Rajdeep                                                                                                                                                                                                                                                                                                           
+
+SQL> UPDATE Employee SET Emp_Id = 543 WHERE Emp_Id = 10;
+
+1 row updated.
+
+SQL> SELECT e1.Dept_Name, AVG(e1.Salary)
+  2  FROM Employee e1
+  3  WHERE Salary = (SELECT AVG(Salary) FROM Employee e2 WHERE e2.Dept_Name = e1.Dept_Name);
+SELECT e1.Dept_Name, AVG(e1.Salary)
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function 
+
+
+SQL> SELECT Dept_Name, AVG(Salary)
+  2  FROM Employee e1
+  3  WHERE Salary = (SELECT AVG(Salary) FROM Employee e2 WHERE e2.Dept_Name = e1.Dept_Name);
+SELECT Dept_Name, AVG(Salary)
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function 
+
+
+SQL> SELECT e1.Dept_Name, AVG(e1.Salary)
+  2  ;
+
+*
+ERROR at line 2:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT Dept_Name, AVG(Salary)
+  2  FROM Employee e1
+  3  GROUP BY Dept_Name
+  4  HAVING Salary = (SELECT AVG(Salary) FROM Employee e2 WHERE e2.Dept_Name = e1.Dept_Name);
+HAVING Salary = (SELECT AVG(Salary) FROM Employee e2 WHERE e2.Dept_Name = e1.Dept_Name)
+       *
+ERROR at line 4:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> SELECT Dept_Name, AVG(Salary) AS Avg_Salary
+  2  FROM Employee e1
+  3  GROUP BY Dept_Name;
+
+DEPT_NAME  AVG_SALARY                                                                                                                                                                                                                                                                                                                                                                                           
+---------- ----------                                                                                                                                                                                                                                                                                                                                                                                           
+20              60000                                                                                                                                                                                                                                                                                                                                                                                           
+40              45000                                                                                                                                                                                                                                                                                                                                                                                           
+30              27500                                                                                                                                                                                                                                                                                                                                                                                           
+
+SQL> spool end
