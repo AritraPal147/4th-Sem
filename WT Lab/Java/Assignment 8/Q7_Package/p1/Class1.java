@@ -7,7 +7,7 @@ public class Class1 {
 	public int n_pub = 4;
 	
 	public Class1() {
-		System.out.println("Same package, Same class\n");
+		System.out.println("Same package, Same class");
 		System.out.println("n = " + n);
 		System.out.println("n_pri = " + n_pri);
 		System.out.println("n_pro = " + n_pro);

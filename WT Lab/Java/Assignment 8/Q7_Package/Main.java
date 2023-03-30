@@ -1,3 +1,8 @@
+/*
+	7. Java program to show the use of different access specifiers in different
+	   packages and show visibility control.
+ */
+
 import p1.*;
 import p2.*;
 

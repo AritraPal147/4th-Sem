@@ -1,3 +1,10 @@
+/*
+	1. Illustrate the usage of abstract class with following Java classes –
+		i) An abstract class “Student” with data members roll no, reg
+		   no and a abstract method course()
+		ii) A subclass “Kiitian” with course() method implementation
+ */
+
 abstract class Student {
 	int roll;
 	int regNo;

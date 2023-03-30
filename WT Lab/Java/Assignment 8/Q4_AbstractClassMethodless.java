@@ -1,16 +1,16 @@
 // 4) Java program to create an abstract class without any abstract method.
 
 import java.util.Scanner;
-abstract class Sum {
+abstract class Summer {
 	int num1, num2;
 	
-	Sum(int num1, int num2) {
+	Summer(int num1, int num2) {
 		this.num1 = num1;
 		this.num2 = num2;
 	}
 }
 
-class TestingSum extends Sum {
+class TestingSum extends Summer {
 	TestingSum(int num1, int num2) {
 		super(num1, num2);
 	}
