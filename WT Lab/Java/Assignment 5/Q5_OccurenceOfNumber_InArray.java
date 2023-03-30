@@ -32,6 +32,8 @@ public class Q5_OccurenceOfNumber_InArray {
         for(int i = 0; i < freq.length; i++){  
             if(freq[i] != checked)  
                 System.out.println("    " + arr[i] + "    |    " + freq[i]);  
-        }   
+        }
+        
+        sc.close();
     }
 }  
