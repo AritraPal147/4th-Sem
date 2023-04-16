@@ -1,3 +1,5 @@
+// 2. Implement a binary search tree and perform searching for an element in Java.
+
 class BinarySearchTree {
     Node root;
 
@@ -8,6 +10,7 @@ class BinarySearchTree {
 
         Node(int data) {
             this.data = data;
+            left = right = null;
         }
     }
 
@@ -48,10 +51,5 @@ public class Q2_BinarySearchTree {
             System.out.println("Found 1 in tree");
         else
             System.out.println("1 not found in tree");
-
-        if (tree.search(tree.root, 12))
-            System.out.println("Found 12 in tree");
-        else
-            System.out.println("12 not found in tree");
     }
 }

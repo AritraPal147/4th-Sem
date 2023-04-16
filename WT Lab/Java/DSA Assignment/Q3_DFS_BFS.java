@@ -1,3 +1,5 @@
+// 3. Demonstrate Breadth-First Search (BFS) and Depth-First-Search Tree using Java.
+
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -40,12 +42,10 @@ class BinaryTree {
         while (!queue.isEmpty()) {
             Node node = queue.remove();
             System.out.print(node.data + " ");
-            if (node.left != null) {
+            if (node.left != null) 
                 queue.add(node.left);
-            }
-            if (node.right != null) {
+            if (node.right != null) 
                 queue.add(node.right);
-            }
         }
         System.out.println();
     }

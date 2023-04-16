@@ -1,3 +1,5 @@
+// 4. Implement a Stack and its operations using Java.
+
 class Stack {
     private int top;
     private int[] data;
@@ -16,26 +18,23 @@ class Stack {
     }
 
     public void push(int value) {
-        if (isFull()) {
+        if (isFull()) 
             System.out.println("Stack is full");
-        }
         top++;
         data[top] = value;
     }
 
     public int pop() {
-        if (isEmpty()) {
+        if (isEmpty()) 
             System.out.println("Stack is empty");
-        }
         int value = data[top];
         top--;
         return value;
     }
 
     public int peek() {
-        if (isEmpty()) {
+        if (isEmpty()) 
             System.out.println("Stack is empty");
-        }
         return data[top];
     }
 }
