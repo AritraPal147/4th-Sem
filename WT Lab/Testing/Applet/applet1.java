@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.applet.*;
 
-public class test1 extends Applet {
+public class applet1 extends Applet {
     String msg;
     public void init() {
         setBackground(Color.cyan);
@@ -26,6 +26,6 @@ public class test1 extends Applet {
     }
 }
 /*
-<applet code="test1" height=50 width=300>
+<applet code="applet1.class" height=50 width=300>
 </applet>
 */

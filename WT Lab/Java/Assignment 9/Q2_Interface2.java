@@ -54,7 +54,7 @@ public class Q2_Interface2 {
 		double basicSalary;
 		
 		System.out.print("Enter basic salary for sub staff: ");
-		basicSalary = input.nextInt();
+		basicSalary = input.nextDouble();
 		SubStaff subStaff = new SubStaff(basicSalary);
 		input.close();
 		
