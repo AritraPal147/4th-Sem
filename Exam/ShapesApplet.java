@@ -17,3 +17,9 @@ public class ShapesApplet extends Applet {
     <applet code=ShapesApplet.java height=1000 width=1000>
     </applet>
 */
+
+/*
+<style>
+@import url("style.css")
+</style>
+*/

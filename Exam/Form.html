@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>Form Demo</title>
+    </head>
+
+    <body>
+        <form>
+            <label for="uname">UserName</label>
+            <input type="text" name="uname" id="uid"><br/><br/>
+
+            <label for="pwd">Password</label>
+            <input type="password" name="pwd" id="pwd"><br/><br/>
+            
+            Gender<br/>
+            <input type="radio" name="gender" id="male" value="Male">
+            <label for="male">Male</label>
+            <input type="radio" name="gender" id="female" value="Female">
+            <label for="female">Female</label><br/><br/>
+
+            Interests<br/>
+            <input type="checkbox" name="games" id="games" value="yes">
+            <label for="games">Games</label>
+            <input type="checkbox" name="music" id="music" value="yes">
+            <label for="music">Music</label><br/><br/>
+
+            Country<br/>
+            <select name="country" id="country" multiple="false">
+                <option>India</option>
+                <option>Pakistan</option>
+            </select><br/><br/>
+
+            <label for="bio">Bio:</label><br/>
+            <textarea id="bio" name="bio"></textarea>
+
+            <input type="submit" id="submit" name="submit" value="Submit">
+        </form>
+    </body>
+</html>
